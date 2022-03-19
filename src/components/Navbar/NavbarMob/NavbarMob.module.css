@@ -3,19 +3,78 @@
   cursor: pointer;
 }
 
-.NavModal{
+.NavModal {
   z-index: 110;
   position: fixed;
   height: 100vh;
   width: 100vw;
-  background-color: white;
+  background-color: black;
   left: 0;
   top: 0;
+  transition: all 0.5s ease-out;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-rows: 10% 10% 80%;
+}
+
+.open {
+  transform: translateX(0);
+}
+
+.close {
+  transform: translateX(100%);
+}
+
+.logo {
+  font-family: "Indie Flower", cursive;
+  font-size: 2rem;
+}
+
+.logoSec{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.links {
+  display: flex;
+  justify-content: space-around;
+  height: 100%;
+  align-items: center;
+  padding: 1rem 1rem;
+  margin-top: 1rem;
+}
+
+.linksVert{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  align-items: center;
+  padding: 1rem;
+}
+
+.link {
+  margin: 0 12px;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  text-decoration: none;
+  color: white;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.link:hover,
+.link:active,
+.active {
+  color: rgb(127, 127, 236);
+  border-bottom: 5px solid rgb(127, 127, 236);
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (max-width: 768px) {
-  .hamburger{
+  .hamburger {
     display: block;
   }
 }

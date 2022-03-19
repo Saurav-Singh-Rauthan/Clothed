@@ -51,6 +51,7 @@ const navbarDesk = (props) => {
           SHOES
         </NavLink>
       </div>
+      
       <div className={Styles.links}>
         <NavLink
           className={({ isActive }) =>
