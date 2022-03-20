@@ -9,10 +9,14 @@
 }
 
 .body {
-  margin-top: 100px;
+  margin-top: 110px;
   height: calc(100% - 400px);
 }
 
-.footer {
-  height: 300px;
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+  .body {
+    margin-top: 70px;
+  }
 }

@@ -14,7 +14,7 @@ const navbarDesk = (props) => {
           className={({ isActive }) =>
             isActive ? [Styles.active, Styles.link].join(" ") : Styles.link
           }
-          to="/home"
+          to="/"
         >
           HOME
         </NavLink>

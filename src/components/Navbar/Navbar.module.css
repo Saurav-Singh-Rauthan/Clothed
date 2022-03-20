@@ -17,5 +17,9 @@
   font-size: 2rem;
 }
 
-
-
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+  .navbar {
+    height: 60px;
+  }
+}

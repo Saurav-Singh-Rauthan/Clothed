@@ -9,7 +9,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const NavbarMob = (props) => {
-  const [drawerState, setdrawerState] = useState(Styles.open);
+  const [drawerState, setdrawerState] = useState(Styles.close);
 
   const openDrawerHandler = () => {
     setdrawerState(Styles.open);
@@ -33,7 +33,7 @@ const NavbarMob = (props) => {
           <div className={Styles.logo}>
             <NavLink
               style={{ color: "white", textDecoration: "none" }}
-              to="/home"
+              to="/"
             >
               CLOTHED
             </NavLink>
@@ -74,7 +74,7 @@ const NavbarMob = (props) => {
             className={({ isActive }) =>
               isActive ? [Styles.active, Styles.link].join(" ") : Styles.link
             }
-            to="/home"
+            to="/"
           >
             HOME
           </NavLink>

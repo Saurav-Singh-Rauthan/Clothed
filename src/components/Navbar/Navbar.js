@@ -10,7 +10,7 @@ const navbar = (props) => {
   return (
     <div className={Styles.navbar}>
       <div className={Styles.logo}>
-        <NavLink style={{ color: "white", textDecoration: "none" }} to="/home">
+        <NavLink style={{ color: "white", textDecoration: "none" }} to="/">
           CLOTHED
         </NavLink>
       </div>

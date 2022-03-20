@@ -1,0 +1,40 @@
+.footer {
+  background-color: black;
+  height: 300px;
+  margin-top: 4rem;
+  padding: 2rem;
+  color: white;
+  display: grid;
+  grid-template-rows: 80% 20%;
+}
+
+.links {
+  display: flex;
+  justify-content: space-around;
+}
+
+.sectionType {
+  font-size: 18px;
+  margin-bottom: 0.5rem;
+  color: rgb(127, 127, 236);
+}
+
+.footTabs {
+  display: flex;
+  justify-content: space-evenly;
+  color: #ccc;
+  margin-top: 1rem;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+  .footer {
+    height: auto;
+    display: block;
+  }
+
+  .links {
+    flex-direction: column;
+    text-align: center;
+  }
+}
