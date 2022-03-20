@@ -1,0 +1,102 @@
+.subsection {
+  padding: 2rem;
+}
+
+.sectionType {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sectionType a {
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  text-decoration: none;
+  color: black;
+}
+
+.sectionType a:hover {
+  color: rgb(127, 127, 236);
+}
+
+.heading {
+  font-size: 36px;
+  margin-right: 2rem;
+}
+
+.cardCont {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+}
+
+.card {
+  height: 400px;
+  margin: 0.5rem;
+  transition: all 0.3s ease-out;
+  display: grid;
+  grid-template-rows: 70% 30%;
+}
+
+.card:hover {
+  box-shadow: 2px 2px 10px 10px #ccc;
+}
+
+.cardImg {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+}
+
+.descCont {
+  padding: 1rem;
+}
+
+.descCont p {
+  font-size: 20px;
+  margin: 0 0 0.5rem 0;
+}
+
+.desc {
+  display: flex;
+  justify-content: space-between;
+}
+
+.price {
+  font-size: 18px;
+}
+
+.view {
+  cursor: pointer;
+  padding: 1rem;
+  background: rgb(127, 127, 236);
+  border-radius: 8px;
+}
+
+.view a{
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease-out;
+}
+
+.view a:hover{
+  color: black;
+}
+
+
+@media (max-width: 576px) {
+  .cardCont {
+    grid-template-columns: 100%;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .cardCont {
+    grid-template-columns: repeat(2, 50%);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .cardCont {
+    grid-template-columns: repeat(3, 33%);
+  }
+}

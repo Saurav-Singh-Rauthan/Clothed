@@ -1,0 +1,51 @@
+.cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home {
+  text-align: center;
+  font-size: 28px;
+}
+
+.home a {
+  /* text-decoration: none; */
+  color: black;
+  transition: all 0.3s ease-out;
+  padding: 1rem;
+  margin: 1rem;
+
+  border-radius: 1rem;
+}
+
+.home a:hover,
+.home a:active {
+  color: rgb(127, 127, 236);
+}
+
+.img {
+  margin-bottom: 2rem;
+  height: 500px;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+  .img {
+    height: 200px;
+  }
+
+  .home {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 577px) and ( max-width: 768px) {
+  .img {
+    height: 300px;
+  }
+
+  .home {
+    font-size: 1.5rem;
+  }
+}
