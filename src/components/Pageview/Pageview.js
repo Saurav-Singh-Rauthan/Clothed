@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import Styles from "./Pageview.module.css";
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from "@mui/material/CircularProgress";
 import Cards from "../Cards/Cards";
 
 const Pageview = (props) => {
@@ -39,7 +39,18 @@ const Pageview = (props) => {
 
   return (
     <div className={Styles.container}>
-      {values ? <Cards data={values} /> : null}
+      {values ? (
+        <Cards data={values} />
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <CircularProgress size={"4rem"}/>
+        </div>
+      )}
     </div>
   );
 };

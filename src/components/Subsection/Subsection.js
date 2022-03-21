@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 import Styles from "./Subsection.module.css";
+import CircularProgress from "@mui/material/CircularProgress";
 import Cards from "../Cards/Cards";
 
 const Subsection = (props) => {
@@ -15,7 +16,9 @@ const Subsection = (props) => {
 
   const fetch = (type) => {
     axios
-      .get(`https://react-shop-4fb2f-default-rtdb.firebaseio.com/${type}.json?orderBy="$key"&limitToFirst=4`)
+      .get(
+        `https://react-shop-4fb2f-default-rtdb.firebaseio.com/${type}.json?orderBy="$key"&limitToFirst=4`
+      )
       .then((res) => {
         setvalues(res.data);
       })
@@ -71,7 +74,18 @@ const Subsection = (props) => {
         <p className={Styles.heading}>{sectionDetails.sectionName}</p>
         <Link to={sectionDetails.sectionLink}>More {">"}</Link>
       </div>
-      {values ? <Cards data={values} /> : null}
+      {values ? (
+        <Cards data={values} />
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <CircularProgress size={"4rem"} />
+        </div>
+      )}
     </div>
   );
 };
