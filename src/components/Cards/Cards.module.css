@@ -1,0 +1,22 @@
+.cardCont {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+}
+
+@media (max-width: 576px) {
+  .cardCont {
+    grid-template-columns: 100%;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .cardCont {
+    grid-template-columns: repeat(2, 50%);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .cardCont {
+    grid-template-columns: repeat(3, 33%);
+  }
+}

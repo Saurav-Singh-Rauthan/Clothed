@@ -1,0 +1,31 @@
+.subsection {
+  padding: 2rem;
+}
+
+.sectionType {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sectionType a {
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  text-decoration: none;
+  color: black;
+}
+
+.sectionType a:hover {
+  color: rgb(127, 127, 236);
+}
+
+.heading {
+  font-size: 36px;
+  margin-right: 2rem;
+}
+
+
+
+
+
+

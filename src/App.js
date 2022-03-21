@@ -3,8 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import Home from './components/Pages/Home/Home';
-import Notfound from './components/Pages/Notfound/Notfound';
+import Home from "./components/Pages/Home/Home";
+import Shorts from "./components/Pages/Shorts/Shorts";
+import Shirts from "./components/Pages/Shirts/Shirts";
+import Jeans from "./components/Pages/Jeans/Jeans";
+import Shoes from "./components/Pages/Shoes/Shoes";
+import Notfound from "./components/Pages/Notfound/Notfound";
 
 function App() {
   return (
@@ -14,8 +18,12 @@ function App() {
 
         <div className="body">
           <Routes>
-            <Route path="/" element={<Home/>} />
-            <Route path="*" element={<Notfound/>} />
+            <Route path="/shorts" element={<Shorts />} />
+            <Route path="/shirts" element={<Shirts />} />
+            <Route path="/jeans" element={<Jeans />} />
+            <Route path="/shoes" element={<Shoes />} />
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<Notfound />} />
           </Routes>
         </div>
 

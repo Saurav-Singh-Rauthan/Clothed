@@ -12,10 +12,14 @@ const CarouselComp = (props) => {
       showThumbs={false}
       showStatus={false}
     >
-      {props.img.map((img) => {
+      {props.img.map((img, index) => {
         return (
-          <div>
-            <img style={{objectFit:'cover', height: '500px'}} src={img} alt="img" key={`${img}_1`} />
+          <div key={`${img} ${index}`}>
+            <img
+              style={{ objectFit: "cover", height: "500px" }}
+              src={img}
+              alt="img"
+            />
           </div>
         );
       })}
