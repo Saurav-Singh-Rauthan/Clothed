@@ -1,5 +1,5 @@
 .card {
-  height: 400px;
+  height: 450px;
   margin: 0.5rem;
   transition: all 0.3s ease-out;
   display: grid;
@@ -20,7 +20,9 @@
 }
 
 .descCont {
-  padding: 1rem;
+  /* padding: 1rem; */
+  display: grid;
+  grid-template-rows: calc(100% - 72px) 72px;
 }
 
 .descCont p {
@@ -30,7 +32,9 @@
 
 .desc {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 1rem;
 }
 
 .price {
@@ -38,18 +42,20 @@
 }
 
 .view {
-  cursor: pointer;
   padding: 1rem;
   background: rgb(127, 127, 236);
-  border-radius: 8px;
-}
-
-.view a {
-  text-decoration: none;
-  color: white;
+  width: 100%;
+  font-size: 20px;
+  font-family: inherit;
   transition: all 0.3s ease-out;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 0 0 8px 8px;
+  margin-top: 1rem;
 }
 
-.view a:hover {
+
+.view:hover {
   color: black;
 }
