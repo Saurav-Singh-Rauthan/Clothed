@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Snackbar from "@mui/material/Snackbar";
+import Alert from "../../Alert/Alert";
 import Slide from "@mui/material/Slide";
-import Alert from "@mui/material/Alert";
 
 import Styles from "./Card.module.css";
 
@@ -25,18 +24,13 @@ const Card = (props) => {
 
   return (
     <div className={Styles.card}>
-      <Snackbar
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-        autoHideDuration={4000}
+      <Alert
         open={open}
-        onClose={handleClose}
-        TransitionComponent={transition}
-        key={transition ? transition.name : ""}
-      >
-        <Alert severity="success">
-          Item Added to Cart
-        </Alert>
-      </Snackbar>
+        handleClose={handleClose}
+        transition={transition}
+        msg="Item Added to Cart"
+        success={true}
+      />
       <div>
         <img
           src={props.details.img}

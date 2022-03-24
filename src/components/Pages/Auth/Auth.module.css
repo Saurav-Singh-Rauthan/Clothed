@@ -1,0 +1,52 @@
+.container {
+  margin: 3rem;
+}
+
+.elements {
+  margin: 3rem;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputField {
+  margin: 1.2rem !important;
+  width: 40%;
+}
+
+.button {
+  background-color: rgb(127, 127, 236);
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.button:hover {
+  color: black;
+}
+
+@media (max-width: 576px) {
+  .inputField {
+    width: 100%;
+  }
+
+  .container {
+    margin: 1rem;
+  }
+
+  .elements {
+    margin: 2rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .inputField {
+    width: 80%;
+  }
+}

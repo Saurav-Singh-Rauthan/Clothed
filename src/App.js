@@ -9,6 +9,7 @@ import Shirts from "./components/Pages/Shirts/Shirts";
 import Jeans from "./components/Pages/Jeans/Jeans";
 import Shoes from "./components/Pages/Shoes/Shoes";
 import Notfound from "./components/Pages/Notfound/Notfound";
+import Auth from "./components/Pages/Auth/Auth";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
 
         <div className="body">
           <Routes>
+            <Route path="/auth" element={<Auth />} />
             <Route path="/shorts" element={<Shorts />} />
             <Route path="/shirts" element={<Shirts />} />
             <Route path="/jeans" element={<Jeans />} />

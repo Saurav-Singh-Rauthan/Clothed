@@ -4,6 +4,7 @@
 }
 
 .NavModal {
+  display: none;
   z-index: 110;
   position: fixed;
   height: 100vh;
