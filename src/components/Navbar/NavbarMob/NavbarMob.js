@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Styles from "./NavbarMob.module.css";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -19,6 +20,48 @@ const NavbarMob = (props) => {
     setdrawerState(Styles.close);
   };
 
+  let links = (
+    <React.Fragment>
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? [Styles.active, Styles.link].join(" ") : Styles.link
+        }
+        to="/wishlist"
+      >
+        <FavoriteIcon />
+      </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? [Styles.active, Styles.link].join(" ") : Styles.link
+        }
+        to="/cart"
+      >
+        <ShoppingCartIcon />
+      </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? [Styles.active, Styles.link].join(" ") : Styles.link
+        }
+        to="/account"
+      >
+        <AccountCircleIcon />
+      </NavLink>
+    </React.Fragment>
+  );
+
+  if (!props.isAuthenticated) {
+    links = (
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? [Styles.active, Styles.link].join(" ") : Styles.link
+        }
+        to="/auth"
+      >
+        Login / Register
+      </NavLink>
+    );
+  }
+
   return (
     <React.Fragment>
       <div className={Styles.hamburger}>
@@ -31,10 +74,7 @@ const NavbarMob = (props) => {
         <div className={Styles.logoSec}>
           <div></div>
           <div className={Styles.logo}>
-            <NavLink
-              style={{ color: "white", textDecoration: "none" }}
-              to="/"
-            >
+            <NavLink style={{ color: "white", textDecoration: "none" }} to="/">
               CLOTHED
             </NavLink>
           </div>
@@ -42,32 +82,7 @@ const NavbarMob = (props) => {
         </div>
 
         {/* Icons */}
-        <div className={Styles.links}>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? [Styles.active, Styles.link].join(" ") : Styles.link
-            }
-            to="/wishlist"
-          >
-            <FavoriteIcon />
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? [Styles.active, Styles.link].join(" ") : Styles.link
-            }
-            to="/cart"
-          >
-            <ShoppingCartIcon />
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? [Styles.active, Styles.link].join(" ") : Styles.link
-            }
-            to="/account"
-          >
-            <AccountCircleIcon />
-          </NavLink>
-        </div>
+        <div className={Styles.links}>{links}</div>
 
         <div className={Styles.linksVert}>
           <NavLink
@@ -116,4 +131,10 @@ const NavbarMob = (props) => {
   );
 };
 
-export default NavbarMob;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isAuthenticated: state.auth.token !== null,
+  };
+};
+
+export default connect(mapStateToProps)(NavbarMob);

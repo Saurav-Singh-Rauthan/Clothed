@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import TextField from "@mui/material/TextField";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Slide from "@mui/material/Slide";
+import { useNavigate } from "react-router-dom";
 
 import * as actions from "../../store/actions/index";
 import Styles from "./Auth.module.css";
-import Alert from "../../Alert/Alert";
 
 const Auth = (props) => {
   const [isSignIn, setisSignIn] = useState(true);
@@ -17,16 +16,13 @@ const Auth = (props) => {
   });
 
   const [value, setValue] = useState("one");
-  const [open, setopen] = useState(false);
-  const [transition, setTransition] = useState(undefined);
+  let navigate = useNavigate();
 
-  const TransitionUp = (props) => {
-    return <Slide {...props} direction="up" />;
-  };
-
-  const handleClose = () => {
-    setopen(false);
-  };
+  useEffect(() => {
+    if (props.isAuthenticated && props.link !== null) {
+      navigate(props.link);
+    }
+  }, [props.isAuthenticated]);
 
   const handleChange = (event, newValue) => {
     newValue === "one" ? setisSignIn(true) : setisSignIn(false);
@@ -59,21 +55,8 @@ const Auth = (props) => {
     }
   };
 
-  console.log(props.authMsg, props.authMsgStatus);
-  if (props.authMsg !== null) {
-    setTransition(() => TransitionUp);
-    setopen(true);
-  }
-
   return (
     <div className={Styles.container}>
-      <Alert
-        open={open}
-        handleClose={handleClose}
-        transition={transition}
-        msg={props.authMsg}
-        success={props.authMsgStatus}
-      />
       <Tabs
         value={value}
         onChange={handleChange}
@@ -112,8 +95,8 @@ const Auth = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    authMsg: state.auth.msg,
-    authMsgStatus: state.auth.status,
+    link: state.auth.redirectLink,
+    isAuthenticated: state.auth.token !== null,
   };
 };
 

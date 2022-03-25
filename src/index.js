@@ -10,11 +10,13 @@ import thunk from "redux-thunk";
 
 import authReducer from "./components/store/reducers/auth";
 
+const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__);
+
 const rootreducer = combineReducers({
   auth: authReducer,
 });
 
-const store = createStore(rootreducer, applyMiddleware(thunk));
+const store = createStore(rootreducer, composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <React.StrictMode>

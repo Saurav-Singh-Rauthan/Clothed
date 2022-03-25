@@ -10,18 +10,16 @@ export const authStart = () => {
 export const authFailed = () => {
   return {
     type: actionTypes.AUTH_FAILED,
-    msg: "authentication failed! enter correct credentials",
-    status: false,
+    link: null,
   };
 };
 
 export const authSuccess = (userToken, userId) => {
   return {
-    type: actionTypes.AUTH_START,
+    type: actionTypes.AUTH_SUCCESS,
     token: userToken,
     id: userId,
-    msg: "user authenticated!",
-    status: true,
+    link: "/",
   };
 };
 
@@ -43,9 +41,31 @@ export const auth = (email, password, isSignIn) => {
       .then((res) => {
         console.log(res);
         dispatch(authSuccess(res.data.idToken, res.data.email));
+
+        const userData = {
+          email: res.data.email,
+          userId: res.data.localId,
+          wishlist: "",
+          cart: "",
+        };
+
+        if (!isSignIn) {
+          axios
+            .post(
+              `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users.json?auth=${res.data.idToken}`,
+              userData
+            )
+            .then((response) => {
+              console.log(response);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
       })
       .catch((err) => {
         console.log(err);
+        dispatch(authFailed);
       });
   };
 };

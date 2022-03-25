@@ -5,8 +5,7 @@ const initialState = {
   userId: null,
   error: false,
   loading: false,
-  msg: null,
-  status: null,
+  redirectLink: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -21,8 +20,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: true,
-        msg: action.msg,
-        status: action.status,
+        redirectLink: action.link,
       };
 
     case actionTypes.AUTH_SUCCESS:
@@ -30,8 +28,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         token: action.token,
         userId: action.id,
-        msg: action.msg,
-        status: action.status,
+        redirectLink: action.link,
       };
     default:
       return state;
