@@ -1,6 +1,16 @@
 import * as actionTypes from "./actionTypes";
 import axios from "axios";
 
+export const logout = () => {
+  localStorage.removeItem("userId");
+  localStorage.removeItem("token");
+  localStorage.removeItem("expireTime");
+
+  return {
+    type: actionTypes.AUTH_LOGOUT,
+  };
+};
+
 export const authStart = () => {
   return {
     type: actionTypes.AUTH_START,
@@ -23,7 +33,7 @@ export const authSuccess = (userToken, userId) => {
   };
 };
 
-export const auth = (email, password, isSignIn) => {
+export const auth = (email, password, isSignIn, username) => {
   return (dispatch) => {
     dispatch(authStart);
 
@@ -42,11 +52,22 @@ export const auth = (email, password, isSignIn) => {
         console.log(res);
         dispatch(authSuccess(res.data.idToken, res.data.email));
 
+        const expirationTime = new Date(
+          new Date().getTime() + res.data.expiresIn * 1000
+        );
+
+        localStorage.setItem("token", res.data.idToken);
+        localStorage.setItem("userId", res.data.localId);
+        localStorage.setItem("expireTime", expirationTime);
+
         const userData = {
           email: res.data.email,
           userId: res.data.localId,
           wishlist: "",
           cart: "",
+          orders: "",
+          userName: username,
+          address: "",
         };
 
         if (!isSignIn) {
@@ -67,5 +88,21 @@ export const auth = (email, password, isSignIn) => {
         console.log(err);
         dispatch(authFailed);
       });
+  };
+};
+
+export const autoAuth = () => {
+  return (dispatch) => {
+    const expiredTime = localStorage.getItem("expireTime");
+    const curTime = new Date(new Date().getTime());
+
+    if (curTime > new Date(expiredTime).getTime()) {
+      dispatch(logout);
+    } else {
+      const token = localStorage.getItem("token");
+      const userId = localStorage.getItem("userId");
+
+      dispatch(authSuccess(token, userId));
+    }
   };
 };

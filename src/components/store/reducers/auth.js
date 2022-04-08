@@ -30,6 +30,16 @@ const authReducer = (state = initialState, action) => {
         userId: action.id,
         redirectLink: action.link,
       };
+
+    case actionTypes.AUTH_LOGOUT:
+      return {
+        ...state,
+        token: null,
+        userId: null,
+        redirectLink: "/",
+        error: false,
+      };
+
     default:
       return state;
   }

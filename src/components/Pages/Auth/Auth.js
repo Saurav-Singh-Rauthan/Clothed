@@ -13,10 +13,15 @@ const Auth = (props) => {
   const [userCred, setUserCred] = useState({
     email: "",
     password: "",
+    username: "",
   });
 
   const [value, setValue] = useState("one");
   let navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     if (props.isAuthenticated && props.link !== null) {
@@ -30,7 +35,7 @@ const Auth = (props) => {
   };
 
   const submitHandler = () => {
-    props.authenticate(userCred.email, userCred.password, isSignIn);
+    props.authenticate(userCred.email, userCred.password, isSignIn, userCred.username);
   };
 
   const inputChangeHandler = (type, event) => {
@@ -45,6 +50,12 @@ const Auth = (props) => {
         setUserCred({
           ...userCred,
           password: event.target.value,
+        });
+        break;
+      case "username":
+        setUserCred({
+          ...userCred,
+          username: event.target.value,
         });
         break;
       default:
@@ -69,6 +80,16 @@ const Auth = (props) => {
       </Tabs>
 
       <div className={Styles.elements}>
+        {!isSignIn ? (
+          <TextField
+            className={Styles.inputField}
+            required
+            type="text"
+            value={userCred.username}
+            label="User Name"
+            onChange={(event) => inputChangeHandler("username", event)}
+          />
+        ) : null}
         <TextField
           className={Styles.inputField}
           required
@@ -102,8 +123,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    authenticate: (email, password, isSignIn) => {
-      dispatch(actions.auth(email, password, isSignIn));
+    authenticate: (email, password, isSignIn, username) => {
+      dispatch(actions.auth(email, password, isSignIn, username));
     },
   };
 };

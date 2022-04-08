@@ -1,13 +1,19 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import Alert from "../../Alert/Alert";
 import Slide from "@mui/material/Slide";
-
 import Styles from "./Card.module.css";
 
 const Card = (props) => {
+  let navigate = useNavigate();
+
   const [open, setopen] = useState(false);
   const [transition, setTransition] = useState(undefined);
+  let addToCartMsg = props.isAuthenticated
+    ? "Item Added to Cart"
+    : "please log in to continue";
 
   const TransitionUp = (props) => {
     return <Slide {...props} direction="up" />;
@@ -16,6 +22,11 @@ const Card = (props) => {
   const addToCartHandler = () => {
     setTransition(() => TransitionUp);
     setopen(true);
+    if (!props.isAuthenticated) {
+      setTimeout(() => {
+        navigate("/auth");
+      }, 2000);
+    }
   };
 
   const handleClose = () => {
@@ -28,8 +39,8 @@ const Card = (props) => {
         open={open}
         handleClose={handleClose}
         transition={transition}
-        msg="Item Added to Cart"
-        success={true}
+        msg={addToCartMsg}
+        success={props.isAuthenticated}
       />
       <div>
         <img
@@ -51,4 +62,10 @@ const Card = (props) => {
   );
 };
 
-export default Card;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.token !== null,
+  };
+};
+
+export default connect(mapStateToProps)(Card);

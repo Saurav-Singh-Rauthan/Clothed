@@ -1,5 +1,8 @@
 import "./App.css";
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import * as action from "./components/store/actions/index";
 
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
@@ -10,8 +13,14 @@ import Jeans from "./components/Pages/Jeans/Jeans";
 import Shoes from "./components/Pages/Shoes/Shoes";
 import Notfound from "./components/Pages/Notfound/Notfound";
 import Auth from "./components/Pages/Auth/Auth";
+import Account from "./components/Pages/Account/Account";
 
-function App() {
+const App = (props) => {
+  useEffect(() => {
+    console.log("after refresh");
+    props.autoAuth();
+  });
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -24,6 +33,7 @@ function App() {
             <Route path="/shirts" element={<Shirts />} />
             <Route path="/jeans" element={<Jeans />} />
             <Route path="/shoes" element={<Shoes />} />
+            <Route path="/account" element={<Account />} />
             <Route path="/" element={<Home />} />
             <Route path="*" element={<Notfound />} />
           </Routes>
@@ -33,6 +43,14 @@ function App() {
       </div>
     </BrowserRouter>
   );
-}
+};
 
-export default App;
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    autoAuth: () => {
+      dispatch(action.autoAuth());
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(App);
