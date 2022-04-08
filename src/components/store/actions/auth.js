@@ -24,11 +24,12 @@ export const authFailed = () => {
   };
 };
 
-export const authSuccess = (userToken, userId) => {
+export const authSuccess = (userToken, userId, userEmail) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
     token: userToken,
     id: userId,
+    email: userEmail,
     link: "/",
   };
 };
@@ -50,7 +51,7 @@ export const auth = (email, password, isSignIn, username) => {
       })
       .then((res) => {
         console.log(res);
-        dispatch(authSuccess(res.data.idToken, res.data.email));
+        dispatch(authSuccess(res.data.idToken, res.data.localId,res.data.email));
 
         const expirationTime = new Date(
           new Date().getTime() + res.data.expiresIn * 1000
@@ -66,10 +67,10 @@ export const auth = (email, password, isSignIn, username) => {
           wishlist: "",
           cart: "",
           orders: "",
-          userName: username,
+          username: username,
           address: {
             street: '',
-            zipCode: '',
+            zipcode: '',
             country: '',
           },
         };

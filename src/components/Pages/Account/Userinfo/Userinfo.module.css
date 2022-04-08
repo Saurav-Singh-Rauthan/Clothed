@@ -13,7 +13,7 @@
   width: 75%;
 }
 
-.heading button {
+.logout {
   background-color: rgb(247, 117, 117);
   color: white;
   width: 100px;
@@ -22,11 +22,44 @@
   border-radius: 4px;
   height: 40px;
   transition: all 0.3s ease-out;
-  margin: 0 2rem;
 }
 
-.heading button:hover {
+.logout:hover {
   border: 2px solid red;
+  color: black;
+}
+
+.edit {
+  background-color: rgb(127, 127, 236);
+  color: white;
+  width: 100px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  height: 40px;
+  transition: all 0.3s ease-out;
+  margin: 0 0 0 2rem;
+}
+
+.edit:hover {
+  border: 2px solid blue;
+  color: black;
+}
+
+.save {
+  background-color: rgb(99, 183, 99);
+  color: white;
+  width: 100px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  height: 40px;
+  transition: all 0.3s ease-out;
+  margin: 0 0 0 2rem;
+}
+
+.save:hover {
+  border: 2px solid green;
   color: black;
 }
 
@@ -46,7 +79,7 @@
   flex-direction: column;
 }
 
-.infoType  {
+.infoType {
   font-size: 26px;
   border-bottom: 1px solid #ccc;
   width: 75%;

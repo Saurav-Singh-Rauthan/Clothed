@@ -1,14 +1,15 @@
 import * as actionType from "../actions/actionTypes";
 
 const initialState = {
-  name: "",
+  username: "",
   email: "",
   street: "",
-  zipCode: "",
+  zipcode: "",
   country: "",
   cart: "",
   wishlist: "",
   orders: "",
+  uniqueId: "",
 };
 
 const userDetails = (state = initialState, action) => {
@@ -16,23 +17,25 @@ const userDetails = (state = initialState, action) => {
     case actionType.UI_FAILED:
       return {
         ...state,
-        name: "",
+        username: "",
         email: "",
         street: "",
-        zipCode: "",
+        zipcode: "",
         country: "",
+        uniqueId: "",
       };
     case actionType.UI_SUCCESS:
       return {
         ...state,
-        name: action.name,
+        username: action.name,
         email: action.email,
         street: action.street,
-        zipCode: action.zipCode,
+        zipcode: action.zipcode,
         country: action.country,
         cart: action.cart,
         wishlist: action.wishlist,
         orders: action.orders,
+        uniqueId: action.id,
       };
     default:
       return state;

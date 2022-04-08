@@ -11,22 +11,24 @@ export const setDetails = (
   name,
   email,
   street,
-  zipCode,
+  zipcode,
   country,
   cart,
   wishlist,
-  orders
+  orders,
+  id
 ) => {
   return {
     type: actionType.UI_SUCCESS,
     name,
     email,
     street,
-    zipCode,
+    zipcode,
     country,
     cart,
     wishlist,
     orders,
+    id,
   };
 };
 
@@ -39,18 +41,19 @@ export const fetchDetails = () => {
         )}&orderBy="userId"&equalTo="${localStorage.getItem("userId")}"`
       )
       .then((res) => {
-        // console.log(res.data[Object.keys(res.data)[0]]);
+        console.log(res.data[Object.keys(res.data)[0]]);
         let userData = res.data[Object.keys(res.data)[0]];
         dispatch(
           setDetails(
-            userData.userName,
+            userData.username,
             userData.email,
             userData.address.street,
-            userData.address.zipCode,
+            userData.address.zipcode,
             userData.address.country,
             userData.cart,
             userData.wishlist,
-            userData.orders
+            userData.orders,
+            Object.keys(res.data)[0]
           )
         );
       })
