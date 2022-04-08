@@ -67,7 +67,11 @@ export const auth = (email, password, isSignIn, username) => {
           cart: "",
           orders: "",
           userName: username,
-          address: "",
+          address: {
+            street: '',
+            zipCode: '',
+            country: '',
+          },
         };
 
         if (!isSignIn) {

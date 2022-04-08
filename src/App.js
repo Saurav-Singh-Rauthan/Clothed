@@ -17,7 +17,6 @@ import Account from "./components/Pages/Account/Account";
 
 const App = (props) => {
   useEffect(() => {
-    console.log("after refresh");
     props.autoAuth();
   });
 

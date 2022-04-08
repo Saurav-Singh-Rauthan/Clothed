@@ -1,0 +1,54 @@
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+}
+
+.heading p {
+  margin: 0;
+  border-bottom: 1px solid #ccc;
+  font-size: 26px;
+  padding: 1rem 0;
+  width: 75%;
+}
+
+.heading button {
+  background-color: rgb(247, 117, 117);
+  color: white;
+  width: 100px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  height: 40px;
+  transition: all 0.3s ease-out;
+  margin: 0 2rem;
+}
+
+.heading button:hover {
+  border: 2px solid red;
+  color: black;
+}
+
+.infoFields {
+  display: grid;
+  grid-template-columns: 20% 50%;
+  align-items: center;
+}
+
+.infoFields p {
+  margin: 2rem;
+  font-size: 18px;
+}
+
+.addressField {
+  display: flex;
+  flex-direction: column;
+}
+
+.infoType  {
+  font-size: 26px;
+  border-bottom: 1px solid #ccc;
+  width: 75%;
+  padding: 1rem 0;
+}

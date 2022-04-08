@@ -1,19 +1,14 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
 import Styles from "./Account.module.css";
-import * as action from "../../store/actions/index";
+import Userinfo from "./Userinfo/Userinfo";
 
 const Account = (props) => {
   const [option, setoption] = useState(0);
 
-  let navigate = useNavigate();
-
-  const onLogoutHandler = () => {
-    props.logout();
-    navigate("/");
-  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className={Styles.container}>
@@ -32,20 +27,10 @@ const Account = (props) => {
         </div>
       </div>
       <div className={Styles.contentContainer}>
-        <div className={Styles.account}>
-          <button onClick={onLogoutHandler}>Logout</button>
-        </div>
+        {!option ? <Userinfo /> : null}
       </div>
     </div>
   );
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    logout: () => {
-      dispatch(action.logout());
-    },
-  };
-};
-
-export default connect(null, mapDispatchToProps)(Account);
+export default Account;
