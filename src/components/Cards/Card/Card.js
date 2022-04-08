@@ -13,7 +13,7 @@ const Card = (props) => {
   const [transition, setTransition] = useState(undefined);
   let addToCartMsg = props.isAuthenticated
     ? "Item Added to Cart"
-    : "please log in to continue";
+    : "please log in to continue! Redirecting....";
 
   const TransitionUp = (props) => {
     return <Slide {...props} direction="up" />;

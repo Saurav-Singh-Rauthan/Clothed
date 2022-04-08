@@ -1,7 +1,7 @@
 .footer {
   background-color: black;
   height: 300px;
-  margin-top: 4rem;
+  /* margin-top: 4rem; */
   padding: 2rem;
   color: white;
   display: grid;
