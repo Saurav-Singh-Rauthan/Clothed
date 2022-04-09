@@ -45,8 +45,7 @@ const Card = (props) => {
         )
         .then((res) => {
           if (Object.keys(res.data).length) {
-            // console.log("data found", Object.keys(res.data)[0]);
-            // console.log("found", itemDetails);
+            // updating quantity if item already present in cart
 
             let qtyUpdated = res.data[Object.keys(res.data)[0]].qty + 1;
             let itemDetailsUpdated = {
@@ -54,8 +53,6 @@ const Card = (props) => {
               qty: qtyUpdated,
             };
             const cartItemKey = Object.keys(res.data)[0];
-
-            // updating quantity if item already present in cart
 
             axios
               .put(
@@ -101,8 +98,6 @@ const Card = (props) => {
   const handleClose = () => {
     setopen(false);
   };
-
-  // console.log('details', props)
 
   return (
     <div className={Styles.card}>

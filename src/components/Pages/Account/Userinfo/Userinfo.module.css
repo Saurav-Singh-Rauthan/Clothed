@@ -85,3 +85,48 @@
   width: 75%;
   padding: 1rem 0;
 }
+
+@media (max-width: 576px) {
+  .heading p {
+    width: 50%;
+  }
+
+  .infoFields {
+    grid-template-columns: 30% 60%;
+  }
+
+  .edit,
+  .save {
+    margin: 0;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .heading p {
+    width: 50%;
+  }
+
+  .infoFields {
+    grid-template-columns: 30% 60%;
+  }
+
+  .edit,
+  .save {
+    margin: 0;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+  .heading p {
+    width: 60%;
+  }
+
+  .infoFields {
+    grid-template-columns: 30% 60%;
+  }
+
+  .edit,
+  .save {
+    margin: 0;
+  }
+}

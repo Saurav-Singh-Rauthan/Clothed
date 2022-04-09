@@ -4,7 +4,6 @@
 }
 
 .optionContainer {
-  grid-area: sidebar;
   width: 150px;
   display: flex;
   flex-direction: column;
@@ -31,6 +30,48 @@
 .contentContainer {
   width: 100%;
   padding: 2rem 3rem;
-  grid-area: content;
-  /* background: rgb(127, 127, 236); */
+}
+
+@media (max-width : 576px){
+  .contentContainer {
+    padding: 1rem;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .optionContainer {
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1rem 0 0 0;
+  }
+
+  .option {
+    margin: 0;
+    border-radius: 8px 8px 0 0;
+  }
+}
+
+@media (min-width:577px) and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .optionContainer {
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1rem 0 0 0;
+  }
+
+  .option {
+    margin: 0;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .contentContainer {
+    padding: 2rem;
+  }
 }

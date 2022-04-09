@@ -184,13 +184,15 @@ const Userinfo = (props) => {
           </div>
         </React.Fragment>
       ) : (
-        <CircularProgress
+        <div
           style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
           }}
-        />
+        >
+          <CircularProgress />
+        </div>
       )}
     </div>
   );
