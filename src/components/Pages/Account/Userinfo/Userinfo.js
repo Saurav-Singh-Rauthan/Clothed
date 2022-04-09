@@ -29,22 +29,20 @@ const Userinfo = (props) => {
 
   useEffect(() => {
     props.getUserDetails();
-    setTimeout(() => {
-      setuserDetails({
-        username: props.username,
-        email: props.email,
-        address: {
-          street: props.street,
-          zipcode: props.zipcode,
-          country: props.country,
-        },
-        userId: props.userId,
-        cart: props.cart,
-        orders: props.orders,
-        wishlist: props.wishlist,
-      });
-    }, 500);
-  }, []);
+    setuserDetails({
+      username: props.username,
+      email: props.email,
+      address: {
+        street: props.street,
+        zipcode: props.zipcode,
+        country: props.country,
+      },
+      userId: props.userId,
+      cart: props.cart,
+      orders: props.orders,
+      wishlist: props.wishlist,
+    });
+  }, [props.username]);
 
   const onLogoutHandler = () => {
     props.logout();
@@ -53,17 +51,16 @@ const Userinfo = (props) => {
   };
 
   const changeEditHandler = () => {
+    console.log("latest state", userDetails);
     if (edit) {
       setedit(false);
     } else {
-      console.log("latestState",userDetails);
       axios
         .put(
           `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.uniqueId}.json?auth=${props.token}`,
           userDetails
         )
         .then((res) => {
-          console.log("updated", res);
           setloading(false);
           props.getUserDetails();
         })
@@ -139,7 +136,7 @@ const Userinfo = (props) => {
                 id="standard-required"
                 label=""
                 onChange={(event) => valueChangedHandler("name", event)}
-                value={edit ? props.username : userDetails.username}
+                value={edit ? props.username : userDetails.username || ""}
               />
             </div>
             <div className={Styles.infoFields}>
@@ -161,7 +158,7 @@ const Userinfo = (props) => {
                 id="standard-required"
                 label=""
                 onChange={(event) => valueChangedHandler("street", event)}
-                value={edit ? props.street : userDetails.street}
+                value={edit ? props.street : userDetails.address.street || ""}
               />
             </div>
             <div className={Styles.infoFields}>
@@ -171,7 +168,7 @@ const Userinfo = (props) => {
                 id="standard-required"
                 label=""
                 onChange={(event) => valueChangedHandler("zip", event)}
-                value={edit ? props.zipcode : userDetails.zipcode}
+                value={edit ? props.zipcode : userDetails.address.zipcode || ""}
               />
             </div>
             <div className={Styles.infoFields}>
@@ -181,13 +178,19 @@ const Userinfo = (props) => {
                 id="standard-required"
                 label=""
                 onChange={(event) => valueChangedHandler("country", event)}
-                value={edit ? props.country : userDetails.country}
+                value={edit ? props.country : userDetails.address.country || ""}
               />
             </div>
           </div>
         </React.Fragment>
       ) : (
-        <CircularProgress />
+        <CircularProgress
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        />
       )}
     </div>
   );
@@ -196,7 +199,7 @@ const Userinfo = (props) => {
 const mapStateToProps = (state) => {
   return {
     username: state.userInfo.username,
-    email: state.auth.userEmail,
+    email: state.userInfo.email,
     zipcode: state.userInfo.zipcode,
     street: state.userInfo.street,
     country: state.userInfo.country,

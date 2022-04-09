@@ -17,7 +17,9 @@ import Account from "./components/Pages/Account/Account";
 
 const App = (props) => {
   useEffect(() => {
+    console.log("after refresh");
     props.autoAuth();
+    props.getUserDetails();
   });
 
   return (
@@ -48,6 +50,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     autoAuth: () => {
       dispatch(action.autoAuth());
+    },
+    getUserDetails: () => {
+      dispatch(action.fetchDetails());
     },
   };
 };

@@ -41,7 +41,6 @@ export const fetchDetails = () => {
         )}&orderBy="userId"&equalTo="${localStorage.getItem("userId")}"`
       )
       .then((res) => {
-        console.log(res.data[Object.keys(res.data)[0]]);
         let userData = res.data[Object.keys(res.data)[0]];
         dispatch(
           setDetails(

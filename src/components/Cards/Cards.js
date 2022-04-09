@@ -9,7 +9,14 @@ const Cards = (props) => {
       return key;
     })
     .map((itemKey) => {
-      return <Card details={props.data[itemKey]} key={itemKey} />;
+      return (
+        <Card
+          type={props.type}
+          uniqueKey={itemKey}
+          details={props.data[itemKey]}
+          key={itemKey}
+        />
+      );
     });
 
   return <div className={Styles.cardCont}>{items}</div>;
