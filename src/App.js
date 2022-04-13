@@ -14,12 +14,15 @@ import Shoes from "./components/Pages/Shoes/Shoes";
 import Notfound from "./components/Pages/Notfound/Notfound";
 import Auth from "./components/Pages/Auth/Auth";
 import Account from "./components/Pages/Account/Account";
+import Cart from "./components/Pages/Cart/Cart";
 
 const App = (props) => {
   useEffect(() => {
     console.log("after refresh");
     props.autoAuth();
-    props.getUserDetails();
+    if (props.isAuthenticated) {
+      props.getUserDetails();
+    }
   });
 
   return (
@@ -35,6 +38,7 @@ const App = (props) => {
             <Route path="/jeans" element={<Jeans />} />
             <Route path="/shoes" element={<Shoes />} />
             <Route path="/account" element={<Account />} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/" element={<Home />} />
             <Route path="*" element={<Notfound />} />
           </Routes>
@@ -46,7 +50,13 @@ const App = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.token !== null,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
   return {
     autoAuth: () => {
       dispatch(action.autoAuth());
@@ -57,4 +67,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
