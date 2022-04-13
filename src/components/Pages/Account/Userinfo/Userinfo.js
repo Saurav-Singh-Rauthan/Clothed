@@ -116,19 +116,21 @@ const Userinfo = (props) => {
     <div>
       <div className={Styles.heading}>
         <p>User Details</p>
-        <button
-          className={edit ? Styles.edit : Styles.save}
-          onClick={changeEditHandler}
-        >
-          {edit ? "Edit" : "Save"}
-        </button>
-        <button className={Styles.logout} onClick={onLogoutHandler}>
-          Logout
-        </button>
+        {/* <div className={Styles.btnContainer}> */}
+          <button
+            className={edit ? Styles.edit : Styles.save}
+            onClick={changeEditHandler}
+          >
+            {edit ? "Edit" : "Save"}
+          </button>
+          <button className={Styles.logout} onClick={onLogoutHandler}>
+            Logout
+          </button>
+        {/* </div> */}
       </div>
       {!loading ? (
         <React.Fragment>
-          <div className={Styles.details}>
+          <div className={Styles.addressField}>
             <div className={Styles.infoFields}>
               <p>Username :</p>
               <TextField

@@ -86,7 +86,37 @@
   padding: 1rem 0;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 470px) {
+  .heading {
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+  }
+
+  .heading p {
+    width: 100%;
+  }
+
+  .infoType {
+    width: 100%;
+    margin: 2rem 0 1rem 0;
+  }
+
+  .infoFields {
+    grid-template-columns: 100%;
+    width: 80%;
+    align-self: center;
+  }
+
+  .infoFields p {
+    margin: 2rem 0;
+  }
+
+  .edit {
+    margin: 1rem 0;
+  }
+}
+
+@media (min-width: 471px) and (max-width: 576px) {
   .heading p {
     width: 50%;
   }
