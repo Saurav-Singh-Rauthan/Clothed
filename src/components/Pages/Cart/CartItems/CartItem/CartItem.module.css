@@ -1,0 +1,65 @@
+.cardContainer {
+  display: grid;
+  grid-template-columns: 15% 40% 25% 20%;
+  height: 200px;
+  justify-items: center;
+  margin-bottom: 1rem;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+.itemDesc {
+  padding: 0 1rem;
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-start;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btnContainer p {
+  margin: 1rem;
+}
+
+.btnContainer button {
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.addBtn {
+  background: rgb(127, 127, 236);
+  color: white;
+}
+
+.img {
+  height: 165px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  object-fit: contain;
+  width: 100%;
+}
+
+.removeBtn {
+  background: white;
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+  transition: all 0.3s ease-out;
+  border: 1px solid rgb(248, 37, 37);
+  padding: 1rem;
+  color: rgb(248, 37, 37);
+}
+
+.removeBtn:hover,
+.delBtn {
+  background: rgb(249, 92, 92);
+  color: white;
+}

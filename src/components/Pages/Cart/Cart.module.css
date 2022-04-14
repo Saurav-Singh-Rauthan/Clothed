@@ -1,4 +1,15 @@
 .container {
   display: grid;
-  grid-template-columns: 70% 30%;
+  min-height: calc(100vh - 400px);
+  grid-template-columns: 65% 35%;
+  grid-template-areas: "item summ";
+}
+
+@media (max-width: 992px) {
+  .container {
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "summ"
+      "item";
+  }
 }
