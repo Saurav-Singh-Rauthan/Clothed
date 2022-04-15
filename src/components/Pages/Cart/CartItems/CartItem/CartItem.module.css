@@ -38,6 +38,11 @@
   color: white;
 }
 
+.delBtn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
 .img {
   height: 165px;
   border: 1px solid #ccc;

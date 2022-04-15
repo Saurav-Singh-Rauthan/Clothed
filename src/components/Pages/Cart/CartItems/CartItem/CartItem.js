@@ -14,6 +14,7 @@ const CartItem = (props) => {
         <button
           className={Styles.delBtn}
           onClick={() => props.change("sub", props.details)}
+          disabled={props.details.qty <= 1}
         >
           -
         </button>

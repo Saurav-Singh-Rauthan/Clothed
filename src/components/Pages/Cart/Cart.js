@@ -68,16 +68,37 @@ const Cart = (props) => {
 
   const changeQtyHandler = (type, details) => {
     let updatedDetails = { ...details };
-    type === "add" ? (updatedDetails.qty += 1) : (updatedDetails.qty -= 1);
-    console.log("update", updatedDetails);
+    if (type === "add") {
+      updatedDetails.qty += 1;
+    } else {
+      if (updatedDetails.qty > 1) {
+        updatedDetails.qty -= 1;
+      }
+    }
 
-    let newItems = items?.filter((item) => {
-      return item.itemKey !== details.itemKey;
+    let newItems = items?.map((item) => {
+      if (item.itemKey === details.itemKey) {
+        return updatedDetails;
+      } else {
+        return item;
+      }
     });
 
-    newItems = [...newItems,updatedDetails]
-    console.log(newItems);
+    // newItems = [...newItems,updatedDetails]
+    setitems(newItems);
     // newItems[details.itemKey]
+
+    axios
+      .put(
+        `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.userId}/cart/${details.itemKey}.json?auth=${props.token}`,
+        updatedDetails
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
