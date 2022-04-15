@@ -15,6 +15,7 @@ import Notfound from "./components/Pages/Notfound/Notfound";
 import Auth from "./components/Pages/Auth/Auth";
 import Account from "./components/Pages/Account/Account";
 import Cart from "./components/Pages/Cart/Cart";
+import Description from "./components/Pages/Description/Description";
 
 const App = (props) => {
   useEffect(() => {
@@ -39,6 +40,7 @@ const App = (props) => {
             <Route path="/shoes" element={<Shoes />} />
             <Route path="/account" element={<Account />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/desc" element={<Description />} />
             <Route path="/" element={<Home />} />
             <Route path="*" element={<Notfound />} />
           </Routes>

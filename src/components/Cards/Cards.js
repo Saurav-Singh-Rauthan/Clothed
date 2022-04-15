@@ -15,7 +15,6 @@ const Cards = (props) => {
           uniqueKey={itemKey}
           details={props.data[itemKey]}
           key={itemKey}
-          showBtn={props.showBtn}
         />
       );
     });

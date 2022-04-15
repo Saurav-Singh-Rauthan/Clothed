@@ -21,10 +21,10 @@ const Home = (props) => {
   return (
     <div>
       <Carousel img={images} />
-      <Subsection type="shorts" />
-      <Subsection type="shirts" />
-      <Subsection type="jeans" />
-      <Subsection type="shoes" />
+      <Subsection type="shorts" heading={true} />
+      <Subsection type="shirts" heading={true} />
+      <Subsection type="jeans" heading={true} />
+      <Subsection type="shoes" heading={true} />
     </div>
   );
 };

@@ -70,10 +70,12 @@ const Subsection = (props) => {
 
   return (
     <div className={Styles.subsection}>
-      <div className={Styles.sectionType}>
-        <p className={Styles.heading}>{sectionDetails.sectionName}</p>
-        <Link to={sectionDetails.sectionLink}>More {">"}</Link>
-      </div>
+      {props.heading ? (
+        <div className={Styles.sectionType}>
+          <p className={Styles.heading}>{sectionDetails.sectionName}</p>
+          <Link to={sectionDetails.sectionLink}>More {">"}</Link>
+        </div>
+      ) : null}
       {values ? (
         <Cards data={values} type={props.type} showBtn={true} />
       ) : (

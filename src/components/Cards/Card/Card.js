@@ -100,7 +100,12 @@ const Card = (props) => {
   };
 
   return (
-    <div className={Styles.card}>
+    <div
+      className={Styles.card}
+      onClick={() =>
+        navigate(`/desc?type=${props.type}&item=${props.uniqueKey}`)
+      }
+    >
       <Alert
         open={open}
         handleClose={handleClose}
@@ -120,11 +125,9 @@ const Card = (props) => {
           <p>{props.details.name}</p>
           <div className={Styles.price}>${props.details.price}</div>
         </div>
-        {props.showBtn ? (
-          <button className={Styles.view} onClick={addToCartHandler}>
-            Add To Cart
-          </button>
-        ) : null}
+        <button className={Styles.view} onClick={addToCartHandler}>
+          Add To Cart
+        </button>
       </div>
     </div>
   );
