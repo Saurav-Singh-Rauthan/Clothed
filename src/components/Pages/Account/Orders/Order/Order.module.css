@@ -1,0 +1,8 @@
+.container {
+  margin: 1rem 0 3rem 0;
+}
+
+.orderContainer {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}

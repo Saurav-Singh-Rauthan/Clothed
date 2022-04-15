@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import Styles from "./Account.module.css";
 import Userinfo from "./Userinfo/Userinfo";
+import Orders from "./Orders/Orders";
 
 const Account = (props) => {
   const [option, setoption] = useState(0);
@@ -27,7 +28,7 @@ const Account = (props) => {
         </div>
       </div>
       <div className={Styles.contentContainer}>
-        {!option ? <Userinfo /> : null}
+        {!option ? <Userinfo /> : <Orders />}
       </div>
     </div>
   );

@@ -40,7 +40,7 @@ const Pageview = (props) => {
   return (
     <div className={Styles.container}>
       {values ? (
-        <Cards data={values} type={props.type}/>
+        <Cards data={values} type={props.type} showBtn={true} />
       ) : (
         <div
           style={{
@@ -48,7 +48,7 @@ const Pageview = (props) => {
             justifyContent: "center",
           }}
         >
-          <CircularProgress size={"4rem"}/>
+          <CircularProgress size={"4rem"} />
         </div>
       )}
     </div>

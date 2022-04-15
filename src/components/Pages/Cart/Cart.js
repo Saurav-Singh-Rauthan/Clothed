@@ -107,7 +107,30 @@ const Cart = (props) => {
       });
   };
 
-  const placeOrderHandler = () => {};
+  const placeOrderHandler = () => {
+    setTransition(() => TransitionUp);
+    setmsgState(1);
+    setmsg("Order Placed !!!");
+    setopen(true);
+
+    const orderItems = [new Date(), [...items]]
+    console.log(orderItems);
+
+    axios
+      .post(
+        `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.userId}/orders.json?auth=${props.token}`,
+        orderItems
+      )
+      .then((res) => {
+        setitems([]);
+        axios.delete(
+          `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.userId}/cart.json?auth=${props.token}`
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <React.Fragment>
@@ -138,7 +161,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     getInfo: () => {
       dispatch(actions.fetchDetails());

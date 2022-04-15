@@ -75,7 +75,7 @@ const Subsection = (props) => {
         <Link to={sectionDetails.sectionLink}>More {">"}</Link>
       </div>
       {values ? (
-        <Cards data={values} type={props.type}/>
+        <Cards data={values} type={props.type} showBtn={true} />
       ) : (
         <div
           style={{

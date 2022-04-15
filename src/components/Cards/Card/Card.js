@@ -120,9 +120,11 @@ const Card = (props) => {
           <p>{props.details.name}</p>
           <div className={Styles.price}>${props.details.price}</div>
         </div>
-        <button className={Styles.view} onClick={addToCartHandler}>
-          Add To Cart
-        </button>
+        {props.showBtn ? (
+          <button className={Styles.view} onClick={addToCartHandler}>
+            Add To Cart
+          </button>
+        ) : null}
       </div>
     </div>
   );

@@ -16,6 +16,7 @@ const CartItems = (props) => {
               remove={props.remove}
               change={props.change}
               details={item}
+              showBtn={true}
             />
           );
         })

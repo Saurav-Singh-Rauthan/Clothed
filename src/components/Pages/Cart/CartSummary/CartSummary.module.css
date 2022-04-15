@@ -40,6 +40,11 @@
   background: rgb(161, 161, 255);
 }
 
+.orderBtn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
 .values {
   display: flex;
   justify-content: space-between;

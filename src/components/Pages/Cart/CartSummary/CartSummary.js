@@ -29,7 +29,11 @@ const CartSummary = (props) => {
           <p>${(props.total - props.total * (discount / 100)).toFixed(2)}</p>
         </div>
       </div>
-      <button className={Styles.orderBtn} onClick={props.order}>
+      <button
+        className={Styles.orderBtn}
+        onClick={props.order}
+        disabled={props.total < 1}
+      >
         Place Order
       </button>
     </div>
