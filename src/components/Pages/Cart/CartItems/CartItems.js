@@ -4,8 +4,6 @@ import Styles from "./CartItems.module.css";
 import CartItem from "./CartItem/CartItem";
 
 const CartItems = (props) => {
-  console.log(props.items);
-
   return (
     <div className={Styles.container}>
       <p className={Styles.title}>{`My cart (${props.items?.length})`} </p>

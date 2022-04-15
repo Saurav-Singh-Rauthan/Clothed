@@ -83,11 +83,9 @@ const Cart = (props) => {
         return item;
       }
     });
-
-    // newItems = [...newItems,updatedDetails]
     setitems(newItems);
-    // newItems[details.itemKey]
 
+    // updating qty at db
     axios
       .put(
         `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.userId}/cart/${details.itemKey}.json?auth=${props.token}`,

@@ -68,3 +68,65 @@
   background: rgb(249, 92, 92);
   color: white;
 }
+
+@media (max-width: 480px) {
+  .itemDesc {
+    grid-area: desc;
+  }
+
+  .img {
+    grid-area: img;
+    width: 100px;
+    height: 150px;
+  }
+
+  .removeBtn {
+    grid-area: rem;
+  }
+
+  .btnContainer {
+    grid-area: qty;
+  }
+
+  .cardContainer {
+    display: grid;
+    height: auto;
+    grid-template-columns: none;
+    grid-template-areas:
+      "img desc"
+      "qty rem";
+    row-gap: 1rem;
+    column-gap: 1rem;
+    padding: 1rem 0.5rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .itemDesc {
+    grid-area: desc;
+    width: 100%;
+    text-align: center;
+  }
+
+  .img {
+    grid-area: img;
+    width: 120px;
+  }
+
+  .removeBtn {
+    grid-area: rem;
+  }
+
+  .btnContainer {
+    grid-area: qty;
+  }
+
+  .cardContainer {
+    display: grid;
+    grid-template-columns: none;
+    grid-template-areas:
+      "img desc desc"
+      "img desc desc"
+      "img qty rem";
+  }
+}
