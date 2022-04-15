@@ -1,6 +1,59 @@
 .container {
-  background: green;
-  height: 200px;
-  padding: 2rem;
+  padding: 1rem;
   grid-area: summ;
+}
+
+.heading {
+  background: rgb(127, 127, 236);
+  border-radius: 8px 8px 0 0;
+  padding: 1rem;
+  color: white;
+  font-size: 28px;
+  margin: 0;
+  text-align: center;
+}
+
+.summaryCont {
+  border: 1px solid #ccc;
+  border-bottom: none;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.values p:first-of-type {
+  color: rgb(127, 127, 236)
+}
+
+.orderBtn {
+  background: rgb(127, 127, 236);
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0 0 8px 8px;
+  transition: all 0.3s ease-out;
+  font-size: 1rem;
+}
+
+.orderBtn:hover {
+  background: rgb(161, 161, 255);
+}
+
+.values {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (min-width: 480px) and (max-width: 992px) {
+  .container {
+    width: 80%;
+    justify-self: center;
+  }
+
+  .summaryCont {
+    border: 1px solid #ccc;
+    border-bottom: none;
+    padding: 2rem;
+  }
 }

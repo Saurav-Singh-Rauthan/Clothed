@@ -9,3 +9,9 @@
   border-bottom: 1px solid #ccc;
   margin: 0 0 2rem 0;
 }
+
+@media (max-width: 480px){
+  .title {
+    font-size: 24px;
+  }
+}

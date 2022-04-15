@@ -17,6 +17,7 @@ const Cart = (props) => {
   const [msg, setmsg] = useState("");
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     props.getInfo();
   }, []);
 
@@ -28,8 +29,16 @@ const Cart = (props) => {
         return currentItem;
       });
     }
+
     setitems(items);
   }, [props.cartItems]);
+
+  // calculating total price
+  let totalPrice = 0;
+  items?.map((item) => {
+    totalPrice += item.qty * item.price;
+    return null;
+  });
 
   const handleClose = () => {
     setopen(false);
@@ -45,7 +54,6 @@ const Cart = (props) => {
     });
 
     setitems(newItems);
-    console.log(typeof items);
 
     axios
       .delete(
@@ -99,6 +107,8 @@ const Cart = (props) => {
       });
   };
 
+  const placeOrderHandler = () => {};
+
   return (
     <React.Fragment>
       <Alert
@@ -114,7 +124,7 @@ const Cart = (props) => {
           remove={removeItemHandler}
           change={changeQtyHandler}
         />
-        <CartSummary />
+        <CartSummary order={placeOrderHandler} total={totalPrice} />
       </div>
     </React.Fragment>
   );
