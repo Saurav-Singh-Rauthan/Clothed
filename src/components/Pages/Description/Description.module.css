@@ -4,7 +4,7 @@
 
 .descContainer {
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 40% 60%;
   margin-bottom: 3rem;
   justify-items: center;
 }
@@ -13,7 +13,9 @@
   height: 350px;
   text-align: center;
   width: 100%;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .similarItems {
@@ -23,6 +25,57 @@
   border-bottom: 1px solid #ccc;
 }
 
+.detailsContainer {
+  padding: 1rem 3rem;
+  width: 100%;
+}
+
+.btnContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.addWish,
+.addCart {
+  color: white;
+  padding: 1.5rem;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.addCart {
+  background: rgb(127, 127, 236);
+}
+
+.addWish {
+  background: rgb(236, 124, 39);
+}
+
+.addCart:hover,
+.addWish:hover {
+  color: black;
+}
+
+.name,
+.price {
+  padding: 1rem;
+  font-size: 20px;
+  margin: 0;
+}
+
+.name {
+  color: rgb(127, 127, 236);
+}
+
+.desc {
+  color: rgb(126, 123, 123);
+  font-size: 16px;
+  padding: 1rem;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 1rem;
@@ -30,5 +83,9 @@
 
   .descContainer {
     grid-template-columns: 100%;
+  }
+
+  .detailsContainer {
+    padding: 1rem;
   }
 }

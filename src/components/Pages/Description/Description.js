@@ -1,44 +1,63 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import axios from "axios";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import Styles from "./Description.module.css";
 import Subsection from "../../Subsection/Subsection";
 
 const Description = (props) => {
   const [params, setparams] = useSearchParams();
-  console.log(params.get("type"), params.get("item"));
+  const [itemDetails, setitemDetails] = useState();
+  // console.log(params.get("type"), params.get("item"));
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    axios
+      .get(
+        `https://react-shop-4fb2f-default-rtdb.firebaseio.com/${params.get(
+          "type"
+        )}/${params.get("item")}.json`
+      )
+      .then((res) => {
+        setitemDetails({ ...res.data, key: params.get("item") });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [params.get("item")]);
 
   return (
     <div className={Styles.container}>
-      <div className={Styles.descContainer}>
-        <div className={Styles.img}>
-          <FavoriteBorderIcon
-            style={{
-              position: "absolute",
-              bottom: "0",
-              right: "0",
-              margin: "1rem",
-              width: "28px"
-            }}
-          />
-          <img
-            style={{ objectFit: "contain", height: "350px" }}
-            src="https://rukminim2.flixcart.com/image/580/696/kfikya80/short/6/6/f/l-3007-3008-3018-fastcolors-original-imafvxt8w27m8jgz.jpeg?q=50"
-            alt=""
-          />
+      {itemDetails?.key === params.get("item") ? (
+        <div className={Styles.descContainer}>
+          <div className={Styles.img}>
+            <img
+              style={{ objectFit: "contain", width: "100%", height: "80%" }}
+              src={itemDetails?.img}
+              alt="item img"
+            />
+          </div>
+          <div className={Styles.detailsContainer}>
+            <p className={Styles.name}>{itemDetails?.name}</p>
+            <p className={Styles.price}>${itemDetails?.price}</p>
+            <p className={Styles.desc}>{itemDetails?.desc}</p>
+            <div className={Styles.btnContainer}>
+              <button className={Styles.addWish}>Add to wishlist</button>
+              <button className={Styles.addCart}>Add to cart</button>
+            </div>
+          </div>
         </div>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio vero
-          itaque dignissimos amet cum odio, hic necessitatibus? Deleniti
-          facilis, dignissimos aspernatur magnam eveniet, dolore expedita
-          voluptatum assumenda ea consequuntur iusto?
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <CircularProgress size={"4rem"} />
         </div>
-      </div>
+      )}
 
       <div>
         <p className={Styles.similarItems}>People also like</p>
