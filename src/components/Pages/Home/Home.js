@@ -9,11 +9,7 @@ import img2 from "../../../assests/shanna-camilleri-ljNQxfyN7AM-unsplash.jpg";
 
 const Home = (props) => {
   const images = [img1, img2];
-
-  // useEffect(() => {
-  //   console.log(props.isAuthenticated)
-  // }, [])
-
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

@@ -100,12 +100,7 @@ const Card = (props) => {
   };
 
   return (
-    <div
-      className={Styles.card}
-      onClick={() =>
-        navigate(`/desc?type=${props.type}&item=${props.uniqueKey}`)
-      }
-    >
+    <div className={Styles.card}>
       <Alert
         open={open}
         handleClose={handleClose}
@@ -113,7 +108,11 @@ const Card = (props) => {
         msg={addToCartMsg}
         success={msgState}
       />
-      <div>
+      <div
+        onClick={() =>
+          navigate(`/desc?type=${props.type}&item=${props.uniqueKey}`)
+        }
+      >
         <img
           src={props.details.img}
           alt={props.details.img}
@@ -121,7 +120,12 @@ const Card = (props) => {
         />
       </div>
       <div className={Styles.descCont}>
-        <div className={Styles.desc}>
+        <div
+          className={Styles.desc}
+          onClick={() =>
+            navigate(`/desc?type=${props.type}&item=${props.uniqueKey}`)
+          }
+        >
           <p>{props.details.name}</p>
           <div className={Styles.price}>${props.details.price}</div>
         </div>
