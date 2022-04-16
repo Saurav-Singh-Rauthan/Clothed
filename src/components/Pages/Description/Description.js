@@ -14,11 +14,13 @@ const Description = (props) => {
 
   const [params, setparams] = useSearchParams();
   const [itemDetailsState, setitemDetails] = useState();
+  const [addToState, setaddToState] = useState(1);
   const [open, setopen] = useState(false);
   const [msgState, setmsgState] = useState(1);
   const [transition, setTransition] = useState(undefined);
+
   let addToCartMsg = props.isAuthenticated
-    ? "Item Added to Cart"
+    ? ( addToState ? "Item Added to Cart" : "Item Added to Wishlist")
     : "please log in to continue! Redirecting....";
 
   const TransitionUp = (props) => {
@@ -41,7 +43,12 @@ const Description = (props) => {
       });
   }, [params.get("item")]);
 
+  const handleClose = () => {
+    setopen(false);
+  };
+
   const addToCartHandler = () => {
+    setaddToState(1);
     setTransition(() => TransitionUp);
     if (!props.isAuthenticated) {
       setmsgState(0);
@@ -122,8 +129,64 @@ const Description = (props) => {
     }
   };
 
-  const handleClose = () => {
-    setopen(false);
+  const addToWishHandler = () => {
+    setaddToState(0);
+    setTransition(() => TransitionUp);
+    if (!props.isAuthenticated) {
+      setmsgState(0);
+      setopen(true);
+      setTimeout(() => {
+        navigate("/auth");
+      }, 2000);
+    } else {
+      let itemDetails = {
+        ...itemDetailsState,
+        type: params.get("type"),
+        itemId: params.get("item"),
+      };
+      console.log("details", itemDetails);
+
+      // checking if item is present in wishlist already
+      axios
+        .get(
+          `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${
+            props.uniqueIdUser
+          }/wishlist.json?auth=${
+            props.token
+          }&orderBy="itemId"&equalTo="${params.get("item")}"`
+        )
+        .then((res) => {
+          if (Object.keys(res.data).length) {
+            addToCartMsg = "Item added to wishlist";
+            setmsgState(1);
+            setopen(true);
+          } else {
+            // adding item to cart if the item is not present in cart
+
+            axios
+              .post(
+                `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.uniqueIdUser}/wishlist.json?auth=${props.token}`,
+                itemDetails
+              )
+              .then((res) => {
+                console.log("item added to wish", res);
+                addToCartMsg = "Item added to wishlist";
+                setmsgState(1);
+                setopen(true);
+              })
+              .catch((err) => {
+                setmsgState(0);
+                setopen(true);
+                console.log("item added to cart", err);
+              });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setmsgState(0);
+          setopen(true);
+        });
+    }
   };
 
   return (
@@ -150,7 +213,9 @@ const Description = (props) => {
               <p className={Styles.price}>${itemDetailsState?.price}</p>
               <p className={Styles.desc}>{itemDetailsState?.desc}</p>
               <div className={Styles.btnContainer}>
-                <button className={Styles.addWish}>Add to wishlist</button>
+                <button className={Styles.addWish} onClick={addToWishHandler}>
+                  Add to wishlist
+                </button>
                 <button className={Styles.addCart} onClick={addToCartHandler}>
                   Add to cart
                 </button>
