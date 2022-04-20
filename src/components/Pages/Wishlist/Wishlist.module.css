@@ -1,5 +1,5 @@
 .container {
-  padding: 1rem;
+  padding: 1rem 2rem;
 }
 
 .heading {
@@ -12,5 +12,9 @@
 @media (max-width: 576px) {
   .heading {
     font-size: 24px;
+  }
+
+  .container {
+    padding: 1rem;
   }
 }
