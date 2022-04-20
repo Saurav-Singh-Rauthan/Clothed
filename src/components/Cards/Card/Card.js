@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import Alert from "../../Alert/Alert";
@@ -13,9 +13,7 @@ const Card = (props) => {
   const [open, setopen] = useState(false);
   const [msgState, setmsgState] = useState(1);
   const [transition, setTransition] = useState(undefined);
-  let addToCartMsg = props.isAuthenticated
-    ? "Item Added to Cart"
-    : "please log in to continue! Redirecting....";
+  const [Msg, setMsg] = useState("");
 
   const TransitionUp = (props) => {
     return <Slide {...props} direction="up" />;
@@ -24,6 +22,7 @@ const Card = (props) => {
   const addToCartHandler = () => {
     setTransition(() => TransitionUp);
     if (!props.isAuthenticated) {
+      setMsg("please log in to continue! Redirecting....");
       setmsgState(0);
       setopen(true);
       setTimeout(() => {
@@ -62,6 +61,7 @@ const Card = (props) => {
               .then((res) => {
                 console.log(res);
                 console.log("item added to cart", res);
+                setMsg("item added to cart");
                 setmsgState(1);
                 setopen(true);
               })
@@ -78,11 +78,12 @@ const Card = (props) => {
               )
               .then((res) => {
                 console.log("item added to cart", res);
+                setMsg("item added to cart");
                 setmsgState(1);
                 setopen(true);
               })
               .catch((err) => {
-                addToCartMsg = "Error! Couldn't add item";
+                setMsg("Error! Couldn't add item");
                 setmsgState(0);
                 setopen(true);
                 console.log("item added to cart", err);
@@ -91,8 +92,29 @@ const Card = (props) => {
         })
         .catch((err) => {
           console.log(err);
+          setMsg("Error! Couldn't add item");
+          setmsgState(0);
+          setopen(true);
         });
     }
+  };
+
+  const removeWishItemHandler = () => {
+    axios
+      .delete(
+        `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.uniqueIdUser}/wishlist/${props.wishKey}.json?auth=${props.token}`
+      )
+      .then(() => {
+        setMsg("Item removed from wishlist!");
+        setmsgState(1);
+        setopen(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        setMsg("Error! Couldn't remove item");
+        setmsgState(0);
+        setopen(true);
+      });
   };
 
   const handleClose = () => {
@@ -105,7 +127,7 @@ const Card = (props) => {
         open={open}
         handleClose={handleClose}
         transition={transition}
-        msg={addToCartMsg}
+        msg={Msg}
         success={msgState}
       />
       <div
@@ -129,9 +151,18 @@ const Card = (props) => {
           <p>{props.details.name}</p>
           <div className={Styles.price}>${props.details.price}</div>
         </div>
+        {/* {!props.showBtn ? ( */}
         <button className={Styles.view} onClick={addToCartHandler}>
           Add To Cart
         </button>
+        {/* ) : null} */}
+        {/* 
+          work on removing items after clicking btn
+        (
+          <button className={Styles.view} onClick={removeWishItemHandler}>
+            Remove Item
+          </button>
+        ) */}
       </div>
     </div>
   );

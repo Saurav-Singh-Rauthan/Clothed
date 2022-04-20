@@ -37,10 +37,12 @@ const Pageview = (props) => {
     }
   }, [props.type]);
 
+  console.log("v",values)
+
   return (
     <div className={Styles.container}>
       {values ? (
-        <Cards data={values} type={props.type} showBtn={true} />
+        <Cards data={values} type={props.type}  />
       ) : (
         <div
           style={{

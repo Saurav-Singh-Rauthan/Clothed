@@ -6,7 +6,7 @@ import Order from "./Order/Order";
 const Orders = (props) => {
   return (
     <div>
-      {Object.keys(props.orders).map((key) => {
+      {Object.keys(props.orders).reverse().map((key) => {
         return (
           <Order
             date={props.orders[key][0]}

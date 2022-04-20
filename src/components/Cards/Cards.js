@@ -11,10 +11,14 @@ const Cards = (props) => {
     .map((itemKey) => {
       return (
         <Card
-          type={props.type}
-          uniqueKey={itemKey}
+          type={props.type || props.data[itemKey].type}
+          uniqueKey={
+            props.type !== undefined ? itemKey : props.data[itemKey].itemId
+          }
           details={props.data[itemKey]}
           key={itemKey}
+          wishKey={itemKey}
+          showBtn={props.showBtn}
         />
       );
     });

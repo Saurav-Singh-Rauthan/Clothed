@@ -1,0 +1,16 @@
+.container {
+  padding: 1rem;
+}
+
+.heading {
+  font-size: 32px;
+  padding: 1rem 0;
+  border-bottom: 1px solid #ccc;
+  margin: 0 0 1rem 0;
+}
+
+@media (max-width: 576px) {
+  .heading {
+    font-size: 24px;
+  }
+}
