@@ -37,8 +37,6 @@ const Pageview = (props) => {
     }
   }, [props.type]);
 
-  console.log("v",values)
-
   return (
     <div className={Styles.container}>
       {values ? (

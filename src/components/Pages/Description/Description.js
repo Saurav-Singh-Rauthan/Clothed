@@ -63,7 +63,6 @@ const Description = (props) => {
         itemId: params.get("item"),
         qty: 1,
       };
-      console.log("details", itemDetails);
 
       // checking if item is present in cart already
       axios
@@ -91,8 +90,6 @@ const Description = (props) => {
                 itemDetailsUpdated
               )
               .then((res) => {
-                console.log(res);
-                console.log("item added to cart", res);
                 setmsgState(1);
                 setopen(true);
               })
@@ -108,7 +105,6 @@ const Description = (props) => {
                 itemDetails
               )
               .then((res) => {
-                console.log("item added to cart", res);
                 setmsgState(1);
                 setopen(true);
               })
@@ -116,7 +112,6 @@ const Description = (props) => {
                 addToCartMsg = "Error! Couldn't add item";
                 setmsgState(0);
                 setopen(true);
-                console.log("item added to cart", err);
               });
           }
         })
@@ -144,7 +139,6 @@ const Description = (props) => {
         type: params.get("type"),
         itemId: params.get("item"),
       };
-      console.log("details", itemDetails);
 
       // checking if item is present in wishlist already
       axios
@@ -169,7 +163,6 @@ const Description = (props) => {
                 itemDetails
               )
               .then((res) => {
-                console.log("item added to wish", res);
                 addToCartMsg = "Item added to wishlist";
                 setmsgState(1);
                 setopen(true);
@@ -177,7 +170,6 @@ const Description = (props) => {
               .catch((err) => {
                 setmsgState(0);
                 setopen(true);
-                console.log("item added to cart", err);
               });
           }
         })

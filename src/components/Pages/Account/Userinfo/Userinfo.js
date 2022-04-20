@@ -51,7 +51,6 @@ const Userinfo = (props) => {
   };
 
   const changeEditHandler = () => {
-    console.log("latest state", userDetails);
     if (edit) {
       setedit(false);
     } else {

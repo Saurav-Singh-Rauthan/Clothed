@@ -35,7 +35,6 @@ const Card = (props) => {
         itemId: props.uniqueKey,
         qty: 1,
       };
-      console.log("details", itemDetails);
 
       // checking if item is present in cart already
       axios
@@ -59,8 +58,6 @@ const Card = (props) => {
                 itemDetailsUpdated
               )
               .then((res) => {
-                console.log(res);
-                console.log("item added to cart", res);
                 setMsg("item added to cart");
                 setmsgState(1);
                 setopen(true);
@@ -77,7 +74,6 @@ const Card = (props) => {
                 itemDetails
               )
               .then((res) => {
-                console.log("item added to cart", res);
                 setMsg("item added to cart");
                 setmsgState(1);
                 setopen(true);
@@ -86,7 +82,6 @@ const Card = (props) => {
                 setMsg("Error! Couldn't add item");
                 setmsgState(0);
                 setopen(true);
-                console.log("item added to cart", err);
               });
           }
         })

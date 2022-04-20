@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Styles from "./Wishlist.module.css";
 import Cards from "../../Cards/Cards";
 import * as action from "../../store/actions/index";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Wishlist = (props) => {
   useEffect(() => {
@@ -14,7 +15,19 @@ const Wishlist = (props) => {
   return (
     <div className={Styles.container}>
       <p className={Styles.heading}>Wishlist</p>
-      <Cards data={props.wishlist} showBtn={true} isWish={true} />
+      {Object.keys(props.wishlist).length ? (
+        <Cards data={props.wishlist} showBtn={true} isWish={true} />
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CircularProgress />
+        </div>
+      )}
     </div>
   );
 };

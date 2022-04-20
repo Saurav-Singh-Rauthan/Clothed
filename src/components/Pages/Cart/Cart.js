@@ -99,9 +99,7 @@ const Cart = (props) => {
         `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.userId}/cart/${details.itemKey}.json?auth=${props.token}`,
         updatedDetails
       )
-      .then((res) => {
-        console.log(res);
-      })
+      .then((res) => {})
       .catch((err) => {
         console.log(err);
       });
@@ -113,8 +111,7 @@ const Cart = (props) => {
     setmsg("Order Placed !!!");
     setopen(true);
 
-    const orderItems = [new Date(), [...items]]
-    console.log(orderItems);
+    const orderItems = [new Date(), [...items]];
 
     axios
       .post(

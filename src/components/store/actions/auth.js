@@ -50,8 +50,9 @@ export const auth = (email, password, isSignIn, username) => {
         returnSecureToken: true,
       })
       .then((res) => {
-        console.log(res);
-        dispatch(authSuccess(res.data.idToken, res.data.localId,res.data.email));
+        dispatch(
+          authSuccess(res.data.idToken, res.data.localId, res.data.email)
+        );
 
         const expirationTime = new Date(
           new Date().getTime() + res.data.expiresIn * 1000
@@ -69,9 +70,9 @@ export const auth = (email, password, isSignIn, username) => {
           orders: "",
           username: username,
           address: {
-            street: '',
-            zipcode: '',
-            country: '',
+            street: "",
+            zipcode: "",
+            country: "",
           },
         };
 
@@ -81,9 +82,7 @@ export const auth = (email, password, isSignIn, username) => {
               `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users.json?auth=${res.data.idToken}`,
               userData
             )
-            .then((response) => {
-              console.log(response);
-            })
+            .then((response) => {})
             .catch((err) => {
               console.log(err);
             });
