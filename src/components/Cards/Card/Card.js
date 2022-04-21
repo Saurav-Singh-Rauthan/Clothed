@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Skeleton from "@mui/material/Skeleton";
 
 import Alert from "../../Alert/Alert";
 import Slide from "@mui/material/Slide";
@@ -14,6 +15,7 @@ const Card = (props) => {
   const [msgState, setmsgState] = useState(1);
   const [transition, setTransition] = useState(undefined);
   const [Msg, setMsg] = useState("");
+  const [imgLoad, setimgLoad] = useState(false);
 
   const TransitionUp = (props) => {
     return <Slide {...props} direction="up" />;
@@ -129,14 +131,19 @@ const Card = (props) => {
         onClick={() =>
           navigate(`/desc?type=${props.type}&item=${props.uniqueKey}`)
         }
+        style={imgLoad ? null : { display: "none" }}
       >
         <img
           src={props.details.img}
           alt={props.details.img}
           className={Styles.cardImg}
+          onLoad={() => setimgLoad(true)}
         />
       </div>
-      <div className={Styles.descCont}>
+      <div
+        className={Styles.descCont}
+        style={imgLoad ? null : { display: "none" }}
+      >
         <div
           className={Styles.desc}
           onClick={() =>
@@ -159,6 +166,14 @@ const Card = (props) => {
           </button>
         ) */}
       </div>
+      {imgLoad ? null : (
+        <Skeleton
+          animation="wave"
+          variant="rectangular"
+          width={"100%"}
+          height={"100%"}
+        />
+      )}
     </div>
   );
 };
