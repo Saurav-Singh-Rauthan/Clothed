@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useEffect } from "react";
 
-import Pageview from '../../Pageview/Pageview';
+import Pageview from "../../Pageview/Pageview";
 
 const Shoes = (props) => {
-  return(
-    <Pageview type="shoes"/>
-  )
-}
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    props.getUserDetails();
+  }, []);
 
-export default Shoes
+  return <Pageview type="shoes" />;
+};
+
+export default Shoes;
