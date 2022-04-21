@@ -106,6 +106,7 @@ const App = (props) => {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
+                  margin: "1rem"
                 }}
               >
                 <CircularProgress />
