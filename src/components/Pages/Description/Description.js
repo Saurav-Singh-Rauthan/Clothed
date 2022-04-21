@@ -17,11 +17,14 @@ const Description = (props) => {
   const [addToState, setaddToState] = useState(1);
   const [open, setopen] = useState(false);
   const [msgState, setmsgState] = useState(1);
+  const [Msg, setMsg] = useState("");
   const [transition, setTransition] = useState(undefined);
 
-  let addToCartMsg = props.isAuthenticated
-    ? ( addToState ? "Item Added to Cart" : "Item Added to Wishlist")
-    : "please log in to continue! Redirecting....";
+  props.isAuthenticated
+    ? addToState
+      ? setMsg("Item Added to Cart")
+      : setMsg("Item Added to Wishlist")
+    : setMsg("please log in to continue! Redirecting....");
 
   const TransitionUp = (props) => {
     return <Slide {...props} direction="up" />;
@@ -40,6 +43,9 @@ const Description = (props) => {
       })
       .catch((err) => {
         console.log(err);
+        setMsg("Error! Couldn't fetch details");
+        setmsgState(0);
+        setopen(true);
       });
   }, [params.get("item")]);
 
@@ -95,6 +101,9 @@ const Description = (props) => {
               })
               .catch((err) => {
                 console.log(err);
+                setMsg("Error! Couldn't add item");
+                setmsgState(0);
+                setopen(true);
               });
           } else {
             // adding item to cart if the item is not present in cart
@@ -109,7 +118,7 @@ const Description = (props) => {
                 setopen(true);
               })
               .catch((err) => {
-                addToCartMsg = "Error! Couldn't add item";
+                setMsg("Error! Couldn't add item");
                 setmsgState(0);
                 setopen(true);
               });
@@ -117,7 +126,7 @@ const Description = (props) => {
         })
         .catch((err) => {
           console.log(err);
-          addToCartMsg = "Error! Couldn't add item";
+          setMsg("Error! Couldn't add item");
           setmsgState(0);
           setopen(true);
         });
@@ -151,11 +160,11 @@ const Description = (props) => {
         )
         .then((res) => {
           if (Object.keys(res.data).length) {
-            addToCartMsg = "Item added to wishlist";
+            setMsg("Item added to wishlist!!");
             setmsgState(1);
             setopen(true);
           } else {
-            // adding item to cart if the item is not present in cart
+            // adding item to cart if the item is not present in wishlist
 
             axios
               .post(
@@ -163,7 +172,7 @@ const Description = (props) => {
                 itemDetails
               )
               .then((res) => {
-                addToCartMsg = "Item added to wishlist";
+                setMsg("Item added to wishlist");
                 setmsgState(1);
                 setopen(true);
               })
@@ -175,6 +184,7 @@ const Description = (props) => {
         })
         .catch((err) => {
           console.log(err);
+          setMsg("Error! Couldn't add item");
           setmsgState(0);
           setopen(true);
         });
@@ -187,7 +197,7 @@ const Description = (props) => {
         open={open}
         handleClose={handleClose}
         transition={transition}
-        msg={addToCartMsg}
+        msg={Msg}
         success={msgState}
       />
       <div className={Styles.container}>

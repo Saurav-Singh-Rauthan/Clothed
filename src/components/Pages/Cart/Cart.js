@@ -102,6 +102,10 @@ const Cart = (props) => {
       .then((res) => {})
       .catch((err) => {
         console.log(err);
+        setTransition(() => TransitionUp);
+        setmsgState(0);
+        setmsg("Error!! Please try again");
+        setopen(true);
       });
   };
 
@@ -126,6 +130,10 @@ const Cart = (props) => {
       })
       .catch((err) => {
         console.log(err);
+        setTransition(() => TransitionUp);
+        setmsgState(0);
+        setmsg("Couldn't Place your order");
+        setopen(true);
       });
   };
 

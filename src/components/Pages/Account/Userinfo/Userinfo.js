@@ -7,12 +7,18 @@ import axios from "axios";
 
 import * as action from "../../../store/actions/index";
 import Styles from "./Userinfo.module.css";
+import Alert from "../../../Alert/Alert";
+import Slide from "@mui/material/Slide";
 
 const Userinfo = (props) => {
   let navigate = useNavigate();
 
   const [edit, setedit] = useState(true);
   const [loading, setloading] = useState(false);
+  const [open, setopen] = useState(false);
+  const [msgState, setmsgState] = useState(1);
+  const [transition, setTransition] = useState(undefined);
+  const [Msg, setMsg] = useState("");
   const [userDetails, setuserDetails] = useState({
     username: props.username,
     email: props.email,
@@ -65,6 +71,9 @@ const Userinfo = (props) => {
         })
         .catch((err) => {
           console.log(err);
+          setMsg("Error! Couldn't Update Details");
+          setmsgState(0);
+          setopen(true);
         });
       setloading(true);
       setedit(true);
@@ -111,8 +120,23 @@ const Userinfo = (props) => {
     }
   };
 
+  const TransitionUp = (props) => {
+    return <Slide {...props} direction="up" />;
+  };
+
+  const handleClose = () => {
+    setopen(false);
+  };
+
   return (
     <div>
+      <Alert
+        open={open}
+        handleClose={handleClose}
+        transition={transition}
+        msg={Msg}
+        success={msgState}
+      />
       <div className={Styles.heading}>
         <p>User Details</p>
         <button

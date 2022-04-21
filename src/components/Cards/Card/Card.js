@@ -65,7 +65,9 @@ const Card = (props) => {
                 setopen(true);
               })
               .catch((err) => {
-                console.log(err);
+                setMsg("couldn't add item!!");
+                setmsgState(0);
+                setopen(true);
               });
           } else {
             // adding item to cart if the item is not present in cart

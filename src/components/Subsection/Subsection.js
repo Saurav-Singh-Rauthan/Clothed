@@ -5,6 +5,7 @@ import axios from "axios";
 import Styles from "./Subsection.module.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import Cards from "../Cards/Cards";
+import Alert from "../Alert/Alert";
 
 const Subsection = (props) => {
   const [sectionDetails, setsectionDetails] = useState({
@@ -13,6 +14,10 @@ const Subsection = (props) => {
   });
 
   const [values, setvalues] = useState();
+  const [open, setopen] = useState(false);
+  const [msgState, setmsgState] = useState(1);
+  const [Msg, setMsg] = useState("");
+  const [transition, setTransition] = useState(undefined);
 
   const fetch = (type) => {
     axios
@@ -24,6 +29,10 @@ const Subsection = (props) => {
       })
       .catch((err) => {
         console.log(err);
+        console.log(err);
+        setMsg("Error! Couldn't fetch details");
+        setmsgState(0);
+        setopen(true);
       });
   };
 
@@ -68,8 +77,19 @@ const Subsection = (props) => {
     }
   }, []);
 
+  const handleClose = () => {
+    setopen(false);
+  };
+
   return (
     <div className={Styles.subsection}>
+      <Alert
+        open={open}
+        handleClose={handleClose}
+        transition={transition}
+        msg={Msg}
+        success={msgState}
+      />
       {props.heading ? (
         <div className={Styles.sectionType}>
           <p className={Styles.heading}>{sectionDetails.sectionName}</p>

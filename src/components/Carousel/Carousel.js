@@ -36,7 +36,6 @@ const CarouselComp = (props) => {
               alt="img"
               onLoad={() => {
                 setimgLoad(imgLoad + 1);
-                console.log(imgLoad, "imgLoad");
               }}
             />
             {imgLoad >= 3 ? null : (
