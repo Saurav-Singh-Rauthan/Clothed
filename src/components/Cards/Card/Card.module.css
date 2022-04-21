@@ -21,14 +21,12 @@
 }
 
 .descCont {
-  /* padding: 1rem; */
   display: grid;
   grid-template-rows: calc(100% - 72px) 72px;
 }
 
 .descCont p {
   font-size: 20px;
-  margin: 0 0 0.5rem 0;
 }
 
 .desc {
@@ -57,4 +55,35 @@
 
 .view:hover {
   color: black;
+}
+
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+  .view {
+    font-size: 16px;
+  }
+
+  .descCont p {
+    font-size: 16px;
+  }
+
+  .price {
+    font-size: 16px;
+    padding-left: 4px;
+  }
+
+  .cardImg {
+    height: 200px;
+  }
+
+  .card {
+    height: 300px;
+  }
+
+  .descCont {
+    display: grid;
+    grid-template-rows: calc(100% - 50px) 50px;
+    row-gap: 6px;
+  }
 }

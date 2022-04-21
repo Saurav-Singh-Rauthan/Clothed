@@ -24,8 +24,13 @@
   margin-right: 2rem;
 }
 
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+  .heading {
+    font-size: 26px;
+  }
 
-
-
-
-
+  .subsection {
+    padding: 1rem 2rem;
+  }
+}

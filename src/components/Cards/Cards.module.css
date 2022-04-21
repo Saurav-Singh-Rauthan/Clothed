@@ -6,17 +6,20 @@
 @media (max-width: 576px) {
   .cardCont {
     grid-template-columns: 100%;
+    row-gap: 0.5rem;
   }
 }
 
 @media (min-width: 577px) and (max-width: 768px) {
   .cardCont {
     grid-template-columns: repeat(2, 50%);
+    row-gap: 0.5rem;
   }
 }
 
 @media (min-width: 769px) and (max-width: 992px) {
   .cardCont {
     grid-template-columns: repeat(3, 33%);
+    row-gap: 0.5rem;
   }
 }
