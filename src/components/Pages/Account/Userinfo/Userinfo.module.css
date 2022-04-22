@@ -113,7 +113,8 @@
     margin: 2rem 0;
   }
 
-  .edit {
+  .edit,
+  .save {
     margin: 1rem 0;
   }
 }

@@ -7,7 +7,6 @@ import nf from "../../../assests/undraw_page_not_found_re_e9o6.svg";
 const Notfound = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
-    props.getUserDetails();
   }, []);
 
   return (
