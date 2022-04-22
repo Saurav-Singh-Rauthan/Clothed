@@ -50,16 +50,14 @@ const Wishlist = React.lazy(() => {
   return import("./components/Pages/Wishlist/Wishlist");
 });
 
-
 const App = (props) => {
   useEffect(() => {
     props.autoAuth();
-  });
-
-  useEffect(() => {
-    if (props.isAuthenticated) {
-      props.getUserDetails();
-    }
+    setTimeout(() => {
+      if (props.isAuthenticated) {
+        props.getUserDetails();
+      }
+    }, 100);
   });
 
   let routes = (
@@ -106,7 +104,7 @@ const App = (props) => {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  margin: "1rem"
+                  margin: "1rem",
                 }}
               >
                 <CircularProgress />

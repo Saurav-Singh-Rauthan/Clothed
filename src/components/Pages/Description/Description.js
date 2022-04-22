@@ -8,6 +8,7 @@ import Styles from "./Description.module.css";
 import Subsection from "../../Subsection/Subsection";
 import Alert from "../../Alert/Alert";
 import Slide from "@mui/material/Slide";
+import * as actions from "../../store/actions/index";
 
 const Description = (props) => {
   let navigate = useNavigate();
@@ -20,15 +21,13 @@ const Description = (props) => {
   const [Msg, setMsg] = useState("");
   const [transition, setTransition] = useState(undefined);
 
-  props.isAuthenticated
-    ? addToState
-      ? setMsg("Item Added to Cart")
-      : setMsg("Item Added to Wishlist")
-    : setMsg("please log in to continue! Redirecting....");
-
   const TransitionUp = (props) => {
     return <Slide {...props} direction="up" />;
   };
+
+  useEffect(() => {
+    props.getUserDetails();
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -47,6 +46,12 @@ const Description = (props) => {
         setmsgState(0);
         setopen(true);
       });
+
+    props.isAuthenticated
+      ? addToState
+        ? setMsg("Item Added to Cart")
+        : setMsg("Item Added to Wishlist")
+      : setMsg("please log in to continue! Redirecting....");
   }, [params.get("item")]);
 
   const handleClose = () => {
@@ -252,4 +257,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Description);
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    getUserDetails: () => {
+      dispatch(actions.fetchDetails());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Description);
