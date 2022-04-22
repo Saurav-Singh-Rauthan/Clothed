@@ -95,6 +95,7 @@
 
   .heading p {
     width: 100%;
+    font-size: 26px;
   }
 
   .infoType {
@@ -122,6 +123,7 @@
 @media (min-width: 471px) and (max-width: 576px) {
   .heading p {
     width: 50%;
+    font-size: 26px;
   }
 
   .infoFields {
@@ -137,6 +139,7 @@
 @media (min-width: 577px) and (max-width: 768px) {
   .heading p {
     width: 50%;
+    font-size: 26px;
   }
 
   .infoFields {

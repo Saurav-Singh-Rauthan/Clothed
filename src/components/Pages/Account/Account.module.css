@@ -51,6 +51,7 @@
   .option {
     margin: 0;
     border-radius: 8px 8px 0 0;
+    font-size: 17px;
   }
 }
 
@@ -69,6 +70,7 @@
   .option {
     margin: 0;
     border-radius: 8px 8px 0 0;
+    font-size: 17px;
   }
 
   .contentContainer {
