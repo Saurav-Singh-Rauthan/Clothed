@@ -17,10 +17,34 @@ export const authStart = () => {
   };
 };
 
-export const authFailed = () => {
+export const authFailed = (msg) => {
+  let errorMessage = "";
+  switch (msg) {
+    case "EMAIL_EXISTS":
+      errorMessage = "Email already taken, Sign In";
+      break;
+    case "OPERATION_NOT_ALLOWED":
+      errorMessage = "Password sign-in is disabled ";
+      break;
+    case "TOO_MANY_ATTEMPTS_TRY_LATER":
+      errorMessage = "Too many attempts!! Try again later";
+      break;
+    case "EMAIL_NOT_FOUND":
+      errorMessage = "This email is not registered! Sign Up ";
+      break;
+    case "INVALID_PASSWORD":
+      errorMessage = "Please enter correct password!";
+      break;
+    case "USER_DISABLED":
+      errorMessage = "Account has been disabled by an administrator";
+      break;
+    default:
+  }
+
   return {
     type: actionTypes.AUTH_FAILED,
     link: null,
+    msg: errorMessage,
   };
 };
 
@@ -85,12 +109,13 @@ export const auth = (email, password, isSignIn, username) => {
             .then((response) => {})
             .catch((err) => {
               console.log(err);
+              dispatch(authFailed(err.response.data.error.message));
             });
         }
       })
       .catch((err) => {
         console.log(err);
-        dispatch(authFailed);
+        dispatch(authFailed(err.response.data.error.message));
       });
   };
 };
@@ -108,5 +133,11 @@ export const autoAuth = () => {
 
       dispatch(authSuccess(token, userId));
     }
+  };
+};
+
+export const resetError = () => {
+  return {
+    type: actionTypes.AUTH_RESET,
   };
 };

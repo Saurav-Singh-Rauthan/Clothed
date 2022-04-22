@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 import * as actions from "../../store/actions/index";
 import Styles from "./Auth.module.css";
+import Alert from "../../Alert/Alert";
+import Slide from "@mui/material/Slide";
 
 const Auth = (props) => {
   const [isSignIn, setisSignIn] = useState(true);
@@ -15,6 +17,11 @@ const Auth = (props) => {
     password: "",
     username: "",
   });
+
+  const [open, setopen] = useState(false);
+  const [msgState, setmsgState] = useState(1);
+  const [transition, setTransition] = useState(undefined);
+  const [Msg, setMsg] = useState("");
 
   const [value, setValue] = useState("one");
   let navigate = useNavigate();
@@ -29,13 +36,29 @@ const Auth = (props) => {
     }
   }, [props.isAuthenticated]);
 
+  useEffect(() => {
+    if (props.isError) {
+      setMsg(props.errorMessage);
+      setmsgState(0);
+      setopen(true);
+      setTimeout(() => {
+        props.resetError();
+      }, 1000);
+    }
+  }, [props.isError]);
+
   const handleChange = (event, newValue) => {
     newValue === "one" ? setisSignIn(true) : setisSignIn(false);
     setValue(newValue);
   };
 
   const submitHandler = () => {
-    props.authenticate(userCred.email, userCred.password, isSignIn, userCred.username);
+    props.authenticate(
+      userCred.email,
+      userCred.password,
+      isSignIn,
+      userCred.username
+    );
   };
 
   const inputChangeHandler = (type, event) => {
@@ -66,6 +89,10 @@ const Auth = (props) => {
     }
   };
 
+  const handleClose = () => {
+    setopen(false);
+  };
+
   return (
     <div className={Styles.container}>
       <Tabs
@@ -80,6 +107,13 @@ const Auth = (props) => {
       </Tabs>
 
       <div className={Styles.elements}>
+        <Alert
+          open={open}
+          handleClose={handleClose}
+          transition={transition}
+          msg={Msg}
+          success={msgState}
+        />
         {!isSignIn ? (
           <TextField
             className={Styles.inputField}
@@ -104,6 +138,7 @@ const Auth = (props) => {
           type="password"
           value={userCred.password}
           label="Password"
+          placeholder={!isSignIn ? "min. length should be 6" : null}
           onChange={(event) => inputChangeHandler("password", event)}
         />
         <button className={Styles.button} onClick={submitHandler}>
@@ -118,6 +153,8 @@ const mapStateToProps = (state) => {
   return {
     link: state.auth.redirectLink,
     isAuthenticated: state.auth.token !== null,
+    isError: state.auth.error !== false,
+    errorMessage: state.auth.errorMsg,
   };
 };
 
@@ -125,6 +162,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     authenticate: (email, password, isSignIn, username) => {
       dispatch(actions.auth(email, password, isSignIn, username));
+    },
+    resetError: () => {
+      dispatch(actions.resetError());
     },
   };
 };
