@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from "../../axiosInstance";
 
 import Styles from "./Subsection.module.css";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -22,7 +22,7 @@ const Subsection = (props) => {
   const fetch = (type) => {
     axios
       .get(
-        `https://react-shop-4fb2f-default-rtdb.firebaseio.com/${type}.json?orderBy="$key"&limitToFirst=4`
+        `${type}.json?orderBy="$key"&limitToFirst=4`
       )
       .then((res) => {
         setvalues(res.data);

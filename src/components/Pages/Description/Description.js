@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../../axiosInstance";
 import { connect } from "react-redux";
 
 import CircularProgress from "@mui/material/CircularProgress";
@@ -33,7 +33,7 @@ const Description = (props) => {
     window.scrollTo(0, 0);
     axios
       .get(
-        `https://react-shop-4fb2f-default-rtdb.firebaseio.com/${params.get(
+        `${params.get(
           "type"
         )}/${params.get("item")}.json`
       )
@@ -78,7 +78,7 @@ const Description = (props) => {
       // checking if item is present in cart already
       axios
         .get(
-          `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${
+          `users/${
             props.uniqueIdUser
           }/cart.json?auth=${
             props.token
@@ -97,7 +97,7 @@ const Description = (props) => {
 
             axios
               .put(
-                `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.uniqueIdUser}/cart/${cartItemKey}.json?auth=${props.token}`,
+                `users/${props.uniqueIdUser}/cart/${cartItemKey}.json?auth=${props.token}`,
                 itemDetailsUpdated
               )
               .then((res) => {
@@ -115,7 +115,7 @@ const Description = (props) => {
 
             axios
               .post(
-                `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.uniqueIdUser}/cart.json?auth=${props.token}`,
+                `users/${props.uniqueIdUser}/cart.json?auth=${props.token}`,
                 itemDetails
               )
               .then((res) => {
@@ -157,7 +157,7 @@ const Description = (props) => {
       // checking if item is present in wishlist already
       axios
         .get(
-          `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${
+          `users/${
             props.uniqueIdUser
           }/wishlist.json?auth=${
             props.token
@@ -173,7 +173,7 @@ const Description = (props) => {
 
             axios
               .post(
-                `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.uniqueIdUser}/wishlist.json?auth=${props.token}`,
+                `users/${props.uniqueIdUser}/wishlist.json?auth=${props.token}`,
                 itemDetails
               )
               .then((res) => {

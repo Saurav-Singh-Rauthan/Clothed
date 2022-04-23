@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import TextField from "@mui/material/TextField";
 import CircularProgress from "@mui/material/CircularProgress";
-import axios from "axios";
+import axios from "../../../../axiosInstance";
 
 import * as action from "../../../store/actions/index";
 import Styles from "./Userinfo.module.css";
@@ -62,7 +62,7 @@ const Userinfo = (props) => {
     } else {
       axios
         .put(
-          `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.uniqueId}.json?auth=${props.token}`,
+          `users/${props.uniqueId}.json?auth=${props.token}`,
           userDetails
         )
         .then((res) => {

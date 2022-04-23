@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../axiosInstance";
 
 import Styles from "./Pageview.module.css";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -16,7 +16,7 @@ const Pageview = (props) => {
 
   const fetch = (type) => {
     axios
-      .get(`https://react-shop-4fb2f-default-rtdb.firebaseio.com/${type}.json`)
+      .get(`${type}.json`)
       .then((res) => {
         setvalues(res.data);
       })

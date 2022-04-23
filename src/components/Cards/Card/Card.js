@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../../axiosInstance";
 import Skeleton from "@mui/material/Skeleton";
 
 import Alert from "../../Alert/Alert";
@@ -41,7 +41,7 @@ const Card = (props) => {
       // checking if item is present in cart already
       axios
         .get(
-          `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.uniqueIdUser}/cart.json?auth=${props.token}&orderBy="itemId"&equalTo="${props.uniqueKey}"`
+          `users/${props.uniqueIdUser}/cart.json?auth=${props.token}&orderBy="itemId"&equalTo="${props.uniqueKey}"`
         )
         .then((res) => {
           if (Object.keys(res.data).length) {
@@ -56,7 +56,7 @@ const Card = (props) => {
 
             axios
               .put(
-                `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.uniqueIdUser}/cart/${cartItemKey}.json?auth=${props.token}`,
+                `users/${props.uniqueIdUser}/cart/${cartItemKey}.json?auth=${props.token}`,
                 itemDetailsUpdated
               )
               .then((res) => {
@@ -74,7 +74,7 @@ const Card = (props) => {
 
             axios
               .post(
-                `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.uniqueIdUser}/cart.json?auth=${props.token}`,
+                `users/${props.uniqueIdUser}/cart.json?auth=${props.token}`,
                 itemDetails
               )
               .then((res) => {
@@ -101,7 +101,7 @@ const Card = (props) => {
   const removeWishItemHandler = () => {
     axios
       .delete(
-        `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.uniqueIdUser}/wishlist/${props.wishKey}.json?auth=${props.token}`
+        `users/${props.uniqueIdUser}/wishlist/${props.wishKey}.json?auth=${props.token}`
       )
       .then(() => {
         setMsg("Item removed from wishlist!");

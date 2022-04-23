@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import axios from "axios";
+import axios from "../../../axiosInstance";
 
 export const logout = () => {
   localStorage.removeItem("userId");
@@ -103,7 +103,7 @@ export const auth = (email, password, isSignIn, username) => {
         if (!isSignIn) {
           axios
             .post(
-              `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users.json?auth=${res.data.idToken}`,
+              `users.json?auth=${res.data.idToken}`,
               userData
             )
             .then((response) => {})

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import axios from "axios";
+import axios from "../../../axiosInstance";
 
 import Styles from "./Cart.module.css";
 import * as actions from "../../store/actions/index";
@@ -57,7 +57,7 @@ const Cart = (props) => {
 
     axios
       .delete(
-        `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.userId}/cart/${key}.json?auth=${props.token}`
+        `users/${props.userId}/cart/${key}.json?auth=${props.token}`
       )
       .then((res) => {
         setTransition(() => TransitionUp);
@@ -96,7 +96,7 @@ const Cart = (props) => {
     // updating qty at db
     axios
       .put(
-        `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.userId}/cart/${details.itemKey}.json?auth=${props.token}`,
+        `users/${props.userId}/cart/${details.itemKey}.json?auth=${props.token}`,
         updatedDetails
       )
       .then((res) => {})
@@ -119,13 +119,13 @@ const Cart = (props) => {
 
     axios
       .post(
-        `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.userId}/orders.json?auth=${props.token}`,
+        `users/${props.userId}/orders.json?auth=${props.token}`,
         orderItems
       )
       .then((res) => {
         setitems([]);
         axios.delete(
-          `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users/${props.userId}/cart.json?auth=${props.token}`
+          `users/${props.userId}/cart.json?auth=${props.token}`
         );
       })
       .catch((err) => {

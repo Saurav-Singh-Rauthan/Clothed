@@ -1,5 +1,5 @@
 import * as actionType from "./actionTypes";
-import axios from "axios";
+import axios from "../../../axiosInstance";
 
 export const failedGetDetails = () => {
   return {
@@ -36,7 +36,7 @@ export const fetchDetails = () => {
   return (dispatch) => {
     axios
       .get(
-        `https://react-shop-4fb2f-default-rtdb.firebaseio.com/users.json?auth=${localStorage.getItem(
+        `users.json?auth=${localStorage.getItem(
           "token"
         )}&orderBy="userId"&equalTo="${localStorage.getItem("userId")}"`
       )
